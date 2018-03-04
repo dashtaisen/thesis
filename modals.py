@@ -8,19 +8,19 @@ from amr import AMR
 from smatch import get_amr_line
 
 #path to training/testing unsegmented sents
-UNSEG_SENTS = './amrz/data/camrnew/amr_zh_10k.txt'
+UNSEG_SENTS = '../amrz/data/camrnew/amr_zh_10k.txt'
 
 #path to training/testing segmented sents
 
 #path to training AMRs
-GOLD_AMRs = './amrz/data/camrnew/amr_zh_10k.txt.amr'
+GOLD_AMRs = '../amrz/data/camrnew/amr_zh_10k.txt.amr'
 
 #path to dev AMRs
-DEV_AMRs = './amr_zh_all.txt.dev.amr.basic_abt_feat.1.parsed'
+DEV_AMRs = '../amr_zh_all.txt.dev.amr.basic_abt_feat.1.parsed'
 #path to testing AMRs
 
-MODAL_ZH = [' 能 ',' 可能 ',' 可以 ',' 得起 ',' 得了 ',' 必须 ',' 应该 ',
-        ' 不得不 ',' 会 ',' 要 ',' 得出来 ',' 得起来 ',' 得出 ',' 该 ',' 需 ',' 得 ',' 可 ',' 想 ',' 想要 ',' 要求 ']
+MODAL_ZH = ['能','可能','可以','得起','得了','必须','应该',
+        '不得不','会','要','得出来','得起来','得出','该','需','得','可','想','想要','要求']
 
 """
 # CAMR (Chinese Abstract Meaning Representation) release v0.1
@@ -59,14 +59,17 @@ if __name__ == "__main__":
 
     """
     #sample_amr = comments_and_amrs[1][2]
-    with open(DEV_AMRs) as source:
+    with open(GOLD_AMRs) as source:
+        possibilities = list()
         for line in source:
             amr_line = get_amr_line(source)
             sample_amr = AMR.parse_AMR_line(amr_line)
-            print(sample_amr.nodes)
-            print(sample_amr.node_values)
-            print(sample_amr.relations)
-            print(sample_amr.attributes)
+            #print(sample_amr.nodes)
+            if 'possible' in sample_amr.node_values:
+                possibilities.append(sample_amr)
+        print(len(possibilities))
+            #print(sample_amr.relations)
+            #print(sample_amr.attributes)
 
     #a = AMR()
     #graph = a.parse_AMR_line(sample_amr)
