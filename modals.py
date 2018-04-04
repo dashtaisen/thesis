@@ -48,16 +48,22 @@ def rephrase_complement(snt):
     rephrased0 = pos_complement.sub(r'能 \g<1>',snt)
     rephrased1 = neg_complement.sub(r'不 能 \g<1>',snt)
 
-    if rephrased1 != snt:
-        print("Befor: {}".format(snt))
-        print("After: {}".format(rephrased1))
-        print()
+    #if rephrased1 != snt:
+        #print("Befor: {}".format(snt))
+        #print("After: {}".format(rephrased1))
+        #print()
     return rephrased1
 
 def rephrase_amrs(all_amr_file=None):
     """Rephrase AMRs by removing complement constructions"""
     if all_amr_file is None:
         all_amr_file = GOLD_AMRS
+    with open(all_amr_file) as source:
+        raw = source.read()
+        rephrased = rephrase_complement(raw)
+        with open('../results/rephrased.txt','w') as dest:
+            dest.write(rephrased)
+    """
     rephrase_count = 0
     rephrased_amrs = list()
     comments_and_amrs = read_amrz(all_amr_file) #(comment_list, amr_list)
@@ -74,6 +80,7 @@ def rephrase_amrs(all_amr_file=None):
         #possible_ids.append((comments[i]['id'].encode('utf8'),comments[i]['snt'].encode('utf8'),amrs[i].encode('utf8')))
     print("Total number of rephrased AMRs : {}".format(rephrase_count))
     return sorted(rephrased_amrs,key=lambda x: int(x[0].split(' ')[0].split('.')[1])) #sort by id number
+    """
 
 def get_possible_amrs(all_amr_file=None):
     """Get the IDs of all AMRs with 'possible' concept
@@ -83,7 +90,7 @@ def get_possible_amrs(all_amr_file=None):
         list of (id, snt, amr) tuples
     """
     if all_amr_file is None:
-        all_amr_file = GOLD_AMRS
+        all_amr_file = UNSEG_SENTS
     possible_ids = list() #(id,snt)
     comments_and_amrs = read_amrz(all_amr_file) #(comment_list, amr_list)
     comments = comments_and_amrs[0] #{'snt','id'}
@@ -105,8 +112,12 @@ def write_possible_amrs(amr_list,destfile):
     #possible_ids = get_possible_amrs(all_amr_file)
     with open(destfile,'w') as dest:
         for ids,snts,trees in amr_list:
+            token_ids = enumerate(snts.split(),1)
+            wids = ["x{}_{}".format(num, token) for num, token in token_ids]
+            wid_string = ' '.join(wids)
             dest.write('# ::id {}\n'.format(ids))
             dest.write('# ::snt {}\n'.format(snts))
+            dest.write('# ::wid {}\n'.format(wid_string))
             #tree_string = trees.decode('utf8')
             tree_string = trees
             try:
@@ -209,10 +220,10 @@ def get_modal_sents():
     return modal_sents
 
 if __name__ == "__main__":
-    rephrased = rephrase_amrs(all_amr_file=GOLD_AMRS)
-    write_possible_amrs(amr_list=rephrased,destfile='../results/amr_zh_10k_rephrased.txt')
-    #possible_amrs = get_possible_amrs(all_amr_file=GOLD_AMRS)
-    #write_possible_amrs(destfile='../results/possible_amrs.txt',all_amr_file=GOLD_AMRS)
+    #rephrased = rephrase_amrs(all_amr_file=GOLD_AMRS)
+    #write_possible_amrs(amr_list=rephrased,destfile='../results/amr_zh_10k_rephrased.txt')
+    possible_amrs = get_possible_amrs(all_amr_file=GOLD_AMRS)
+    write_possible_amrs(possible_amrs, destfile='../results/possible_amrs_wid.txt')
     #possible_devs = get_possible_devs(all_amr_file=GOLD_AMRS, dev_amr_file=DEV_AMRS)
     #write_possible_amrs(amr_list=possible_devs,destfile='../results/possible_devs.txt')
     #missing,spurious = find_mismatch()
