@@ -50,14 +50,14 @@ def find_mismatch():
     gold_ids = [gold_comment['id'] for gold_comment in gold_comments]
     gold_snts = [gold_comment['snt'] for gold_comment in gold_comments]
     gold_amrs = gold_tuples[1]
-    gold_tuples = zip(gold_ids,gold_snts,gold_amrs)
+    gold_tuples = list(zip(gold_ids,gold_snts,gold_amrs))
 
     dev_tuples = read_amrz(DEV_MODALS)
     dev_comments = dev_tuples[0]
     dev_ids = [dev_comment['id'] for dev_comment in dev_comments]
     dev_snts = [dev_comment['snt'] for dev_comment in dev_comments]
-    dev_amrs = dev_tuples[1] 
-    dev_tuples = zip(dev_ids,dev_snts,dev_amrs)
+    dev_amrs = dev_tuples[1]
+    dev_tuples = list(zip(dev_ids,dev_snts,dev_amrs))
     print(len(dev_tuples))
     print(dev_tuples[0][0])
     print(gold_tuples[0][0])
@@ -98,7 +98,7 @@ def write_possible_ids():
             dest.write('# ::snt {}\n'.format(snts))
             tree_string = trees.decode('utf8')
             tree_string = Tree.fromstring(tree_string).pformat()
-            dest.write('{}\n\n'.format(tree_string.encode('utf8')))    
+            dest.write('{}\n\n'.format(tree_string.encode('utf8')))
 
 def get_possible_devs():
     possible_ids = [item[0] for item in get_possible_ids()]
@@ -110,15 +110,15 @@ def get_possible_devs():
         if dev_comments[i]['id'] in possible_ids:
             possible_devs.append({'id':dev_comments[i]['id'],'snt':dev_comments[i]['snt'],'amr':dev_amrs[i]})
     possible_devs = sorted(possible_devs, key=lambda x:int(x['id'].split(' ')[0].split('.')[1]))
-    
+
     with codecs.open('possible_dev.txt','w') as dest:
         for possible_dev in possible_devs:
             dest.write('# ::id {}\n'.format(possible_dev['id']))
             dest.write('# ::snt {}\n'.format(possible_dev['snt'].encode('utf-8')))
             tree_string = possible_dev['amr']
             tree_string = Tree.fromstring(tree_string).pformat()
-            dest.write('{}\n\n'.format(tree_string.encode('utf8')))    
-    
+            dest.write('{}\n\n'.format(tree_string.encode('utf8')))
+
 def get_modal_sents():
     modal_sents = dict()
     with open(UNSEG_SENTS) as source:
