@@ -124,23 +124,10 @@ def find_mismatch():
     """Find cases where dev amr should have 'possibilty' but doesn't"""
     possibility_missing = list()
     possibility_spurious = list()
-    mismatches = list()
-    gold_tuples = read_amrz(GOLD_MODALS)
-    gold_comments = gold_tuples[0]
-    gold_ids = [gold_comment['id'] for gold_comment in gold_comments]
-    gold_snts = [gold_comment['snt'] for gold_comment in gold_comments]
-    gold_amrs = gold_tuples[1]
-    gold_tuples = list(zip(gold_ids,gold_snts,gold_amrs))
 
-    dev_tuples = read_amrz(DEV_MODALS)
-    dev_comments = dev_tuples[0]
-    dev_ids = [dev_comment['id'] for dev_comment in dev_comments]
-    dev_snts = [dev_comment['snt'] for dev_comment in dev_comments]
-    dev_amrs = dev_tuples[1]
-    dev_tuples = list(zip(dev_ids,dev_snts,dev_amrs))
-    print(len(dev_tuples))
-    print(dev_tuples[0][0])
-    print(gold_tuples[0][0])
+    gold_tuples = get_possible_amrs()
+    dev_tuples = get_possible_devs()
+
     for dev_tuple in dev_tuples:
         gold_matches = [gold_tuple for gold_tuple in gold_tuples if gold_tuple[0] == dev_tuple[0]]
         if len(gold_matches) > 0:
@@ -150,11 +137,10 @@ def find_mismatch():
             gold_amr = AMR.parse_AMR_line(gold_match[2])
             gold_nodes = gold_amr.node_values
             if 'possible' in gold_nodes and 'possible' not in dev_nodes:
-                mismatches.append(dev_tuple[0])
+                possibility_missing.append(dev_tuple[0])
             elif 'possible' in dev_nodes and 'possible' not in gold_nodes:
-                mismatches.append(dev_tuple[0])
-
-    return mismatches
+                possibility_spurious.append(dev_tuple[0])
+    return possibility_missing, possibility_spurious
 
 def sample_tree():
     """Draw a sample tree"""
@@ -185,9 +171,11 @@ def get_modal_sents():
 if __name__ == "__main__":
     #possible_amrs = get_possible_amrs(all_amr_file=GOLD_AMRS)
     #write_possible_amrs(destfile='../results/possible_amrs.txt',all_amr_file=GOLD_AMRS)
-    possible_devs = get_possible_devs(all_amr_file=GOLD_AMRS, dev_amr_file=DEV_AMRS)
-    write_possible_amrs(amr_list=possible_devs,destfile='../results/possible_devs.txt')
-    #mismatch = find_mismatch()
+    #possible_devs = get_possible_devs(all_amr_file=GOLD_AMRS, dev_amr_file=DEV_AMRS)
+    #write_possible_amrs(amr_list=possible_devs,destfile='../results/possible_devs.txt')
+    missing,spurious = find_mismatch()
+    print("Missing 'possibility' concepts: {}".format(len(missing)))
+    print("Spurious 'possibility' concepts: {}".format(len(spurious)))
     #print(len(mismatch))
     #sample_tree()
     #write_possible_ids()
