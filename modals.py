@@ -19,6 +19,10 @@ RESULTS_DIR = os.path.join(os.pardir,'results')
 GOLD_AMRS = os.path.join(AMR_DATA_DIR, 'amr_zh_10k.txt.amr')
 print(GOLD_AMRS)
 #path to dev AMRs
+BASIC_TEST = os.path.join(AMR_DATA_DIR,'amr_zh_all.txt.test.amr.basic_abt_feat.parsed')
+REPHRASED_TEST = os.path.join(AMR_DATA_DIR,'amr_zh_all.txt.test.amr.basic_abt_feat.parsed')
+SIBLING_TEST = os.path.join(AMR_DATA_DIR,'amr_zh_all.txt.test.amr.sibling_feat.parsed')
+
 DEV_AMRS = os.path.join(AMR_DATA_DIR, 'amr_zh_all.txt.dev.amr.basic_abt_feat.1.parsed')
 #path to testing AMRs
 
@@ -39,6 +43,33 @@ MODAL_ZH = ['能','可能','可以','得起','得了','必须','应该',
 # ::snt 最近 ， 我们 通过 知情 人士 从 衡阳市 殡葬 管理处 财务 部门 复印 出 部分 原始 发票 凭证 11 份 （ 共计 有 30余 份 ） 。
 # ::wid x1_最近 x2_， x3_我们 x4_通过 x5_知情 x6_人士 x7_从 x8_衡阳市 x9_殡葬 x10_管理处 x11_财务 x12_部门 x13_复印 x14_出 x15_部分 x16_原始 x17_发票 x18_凭证 x19_11 x20_份 x21_（ x22_共计 x23_有 x24_30余 x25_份 x26_） x27_。 x28_
 """
+def get_dependency_tuple_elements(deptup):
+    relre = re.compile(r"(\w+)\((\w+-\d+), ([^\-]+-\d+)\)")
+    relre_match = relre.match(deptup)
+    if relre_match:
+        return (relre_match[1],relre_match[2],relre_match[3])
+
+def latex_dependency(sentstring,tupstring,dest_fname):
+    with open(dest_fname,'w') as dest:
+        dest.write("\\begin{dependency}[theme = simple]\n")
+        dest.write("\\begin{deptext}[column sep=13m]\n")
+        toks = sentstring.split(" ")
+        sent =" \\& ".join(toks) + " \\\\\n"
+        dest.write(sent)
+        dest.write("\\end{deptext}\n")
+        deps = tupstring.split("\n")
+        for dep in deps:
+            #print(dep)
+            if len(dep) > 0:
+                rel, first, second = get_dependency_tuple_elements(dep)
+                first_num = first.split('-')[1]
+                second_num = second.split('-')[1]
+                if rel == 'root':
+                    dest.write("\\deproot{{{}}}{{'ROOT'}}\n".format(second_num))
+                else:
+                    #dest.write("\\depedge{{{}}}{{{}}}{{{}}}\n".format(second_num,first_num,rel))
+                    dest.write("\\depedge{{{}}}{{{}}}{{{}}}\n".format(first_num,second_num,rel))
+        dest.write("\\end{dependency}")
 
 def rephrase_complement(snt):
     """Remove complement construction"""
@@ -54,33 +85,92 @@ def rephrase_complement(snt):
         #print()
     return rephrased1
 
-def rephrase_amrs(all_amr_file=None):
+def rephrase_amrs(dest_file,all_amr_file=None):
     """Rephrase AMRs by removing complement constructions"""
+    #pos_complement = re.compile(r'(\w+)\s[得]\s[了起到出来错完上下住]')
+    #neg_complement = re.compile(r'(\w+)\s[不]\s[了起到出来错完上下住]')
+    pos_complement = re.compile(r"(\S)\s[得]\s[了起到出来错完上下住]")
+    neg_complement = re.compile(r"(\S)\s[不]\s[了起到出来错完上下住]")
+
+    rephrased_ids = set()
+    rephrased_snt = None
+    current_id = None
+    if all_amr_file is None:
+        all_amr_file = UNSEG_SENTS
+    with open(all_amr_file) as source:
+        with open(dest_file,'w') as dest:
+            for line in source:
+                if line.startswith("# ::id"):
+                    current_id = line
+                    dest.write(line)
+                elif line.startswith("# ::snt"):
+                    if pos_complement.search(line):
+                        line =  pos_complement.sub(r'能 \g<1>',line)
+                        rephrased_ids.add(current_id)
+                    elif neg_complement.search(line):
+                        line =  neg_complement.sub(r'不 能 \g<1>',line)
+                        rephrased_ids.add(current_id)
+                    rephrased_snt = line.replace("# ::snt","")
+                    dest.write(line)
+                elif line.startswith("# ::wid"):
+                    sent = rephrased_snt
+                    toks = [tok for tok in rephrased_snt.split(" ") if len(tok) > 0 and not tok.isspace()]
+                    numbered_toks = ["x{}_{}".format(num,tok) for num, tok in enumerate(toks)]
+                    wids = ' '.join(numbered_toks)
+                    dest.write("# ::wid {}".format(wids))
+                else:
+                    line = line.replace('possible','能-01')
+                    dest.write(line)
+
+        print("Rephrased sentences: {}".format(rephrased_ids))
+
+
+
+def get_amrs_with_concept(concept,all_amr_file=None):
+    """Get the IDs of all AMRs with 'possible' concept
+    Inputs:
+        amr_file: file with all the AMRs
+    Returns:
+        list of (id, snt, amr) tuples
+    """
     if all_amr_file is None:
         all_amr_file = GOLD_AMRS
-    with open(all_amr_file) as source:
-        raw = source.read()
-        rephrased = rephrase_complement(raw)
-        with open('../results/rephrased.txt','w') as dest:
-            dest.write(rephrased)
-    """
-    rephrase_count = 0
-    rephrased_amrs = list()
+    match_amrs = list() #(id,snt)
     comments_and_amrs = read_amrz(all_amr_file) #(comment_list, amr_list)
     comments = comments_and_amrs[0] #{'snt','id'}
     amrs = comments_and_amrs[1]
-    for i in range(len(comments)):
-        id = comments[i]['id']
-        snt = comments[i]['snt']
-        amr = amrs[i]
-        rephrased_snt = rephrase_complement(snt)
-        if rephrased_snt != snt:
-            rephrase_count += 1
-        rephrased_amrs.append((id,snt,amr))
-        #possible_ids.append((comments[i]['id'].encode('utf8'),comments[i]['snt'].encode('utf8'),amrs[i].encode('utf8')))
-    print("Total number of rephrased AMRs : {}".format(rephrase_count))
-    return sorted(rephrased_amrs,key=lambda x: int(x[0].split(' ')[0].split('.')[1])) #sort by id number
-    """
+    for i in range(len(amrs)):
+        amr_graph = AMR.parse_AMR_line(amrs[i])
+        node_values = amr_graph.node_values
+        if concept in node_values:
+            match_amrs.append((comments[i]['id'],comments[i]['snt'],amrs[i]))
+            #possible_ids.append((comments[i]['id'].encode('utf8'),comments[i]['snt'].encode('utf8'),amrs[i].encode('utf8')))
+    print("Total number of AMRs with '{}': {}".format(concept,len(match_amrs)))
+    return sorted(match_amrs,key=lambda x: int(x[0].split(' ')[0].split('.')[1])) #sort by id number
+
+#def write_possible_amrs(destfile,all_amr_file=None):
+def write_match_amrs(amr_list,destfile):
+    """Write all trees with 'possible' as a concept"""
+    #if all_amr_file is None:
+        #all_amr_file = GOLD_AMRS
+    #possible_ids = get_possible_amrs(all_amr_file)
+    with open(destfile,'w') as dest:
+        for ids,snts,trees in amr_list:
+            token_ids = enumerate(snts.split(),1)
+            wids = ["x{}_{}".format(num, token) for num, token in token_ids]
+            wid_string = ' '.join(wids)
+            dest.write('# ::id {}\n'.format(ids))
+            dest.write('# ::snt {}\n'.format(snts))
+            dest.write('# ::wid {}\n'.format(wid_string))
+            #tree_string = trees.decode('utf8')
+            tree_string = trees
+            try:
+                tree_string = Tree.fromstring(tree_string).pformat()
+            except ValueError:
+                tree_string += ")"
+                tree_string = Tree.fromstring(tree_string).pformat()
+            #dest.write('{}\n\n'.format(tree_string.encode('utf8')))
+            dest.write('{}\n\n'.format(tree_string))
 
 def get_possible_amrs(all_amr_file=None):
     """Get the IDs of all AMRs with 'possible' concept
@@ -90,7 +180,7 @@ def get_possible_amrs(all_amr_file=None):
         list of (id, snt, amr) tuples
     """
     if all_amr_file is None:
-        all_amr_file = UNSEG_SENTS
+        all_amr_file = GOLD_AMRS
     possible_ids = list() #(id,snt)
     comments_and_amrs = read_amrz(all_amr_file) #(comment_list, amr_list)
     comments = comments_and_amrs[0] #{'snt','id'}
@@ -103,6 +193,29 @@ def get_possible_amrs(all_amr_file=None):
             #possible_ids.append((comments[i]['id'].encode('utf8'),comments[i]['snt'].encode('utf8'),amrs[i].encode('utf8')))
     print("Total number of AMRs with 'possible': {}".format(len(possible_ids)))
     return sorted(possible_ids,key=lambda x: int(x[0].split(' ')[0].split('.')[1])) #sort by id number
+
+def get_obligate_amrs(all_amr_file=None):
+    """Get the IDs of all AMRs with 'possible' concept
+    Inputs:
+        amr_file: file with all the AMRs
+    Returns:
+        list of (id, snt, amr) tuples
+    """
+    if all_amr_file is None:
+        all_amr_file = UNSEG_SENTS
+    obligate_amrs = list() #(id,snt)
+    comments_and_amrs = read_amrz(all_amr_file) #(comment_list, amr_list)
+    comments = comments_and_amrs[0] #{'snt','id'}
+    amrs = comments_and_amrs[1]
+    for i in range(len(amrs)):
+        amr_graph = AMR.parse_AMR_line(amrs[i])
+        node_values = amr_graph.node_values
+        if 'obligate' in node_values:
+            obligate_amrs.append((comments[i]['id'],comments[i]['snt'],amrs[i]))
+            #possible_ids.append((comments[i]['id'].encode('utf8'),comments[i]['snt'].encode('utf8'),amrs[i].encode('utf8')))
+    print("Total number of AMRs with 'obligate': {}".format(len(obligate_amrs)))
+    return sorted(obligate_amrs,key=lambda x: int(x[0].split(' ')[0].split('.')[1])) #sort by id number
+
 
 #def write_possible_amrs(destfile,all_amr_file=None):
 def write_possible_amrs(amr_list,destfile):
@@ -127,6 +240,30 @@ def write_possible_amrs(amr_list,destfile):
                 tree_string = Tree.fromstring(tree_string).pformat()
             #dest.write('{}\n\n'.format(tree_string.encode('utf8')))
             dest.write('{}\n\n'.format(tree_string))
+
+def compare_concepts(match_amr_list, comparison_amr_file=None):
+    """Compare results with dev or test set
+    Inputs:
+        all_amr_file: filename with all amrs
+        dev_amr_file: filename with dev amrs
+    Returns:
+        possible_devs: list of (id, snt, amr) tuples
+    """
+    if comparison_amr_file is None:
+        comparison_amr_file = BASIC_TEST
+    match_ids = [item[0] for item in match_amr_list]
+    comparison_matches = list()
+    comparison_tuples = read_amrz(comparison_amr_file)
+    comparison_comments = comparison_tuples[0]
+    comparison_amrs = comparison_tuples[1]
+    for i in range(len(comparison_comments)):
+        if comparison_comments[i]['id'] in match_ids:
+            #possible_devs.append({'id':dev_comments[i]['id'],'snt':dev_comments[i]['snt'],'amr':dev_amrs[i]})
+            comparison_matches.append((comparison_comments[i]['id'],comparison_comments[i]['snt'],comparison_amrs[i]))
+    #possible_devs = sorted(possible_devs, key=lambda x:int(x['id'].split(' ')[0].split('.')[1]))
+    comparison_matches = sorted(comparison_matches, key=lambda x: int(x[0].split(' ')[0].split('.')[1]))
+    print("Total number of sentences in comparison set that should match with all_amr_set: {}".format(len(comparison_matches)))
+    return comparison_matches
 
 def get_possible_devs(all_amr_file=None, dev_amr_file=None):
     """Get sents in the dev set that *should* have 'possible' concept
@@ -154,6 +291,32 @@ def get_possible_devs(all_amr_file=None, dev_amr_file=None):
     print("Total number of sentences in dev/test sets with 'possible': {}".format(len(possible_devs)))
     return possible_devs
 
+def get_obligate_devs(all_amr_file=None, dev_amr_file=None):
+    """Get sents in the dev set that *should* have 'possible' concept
+    Inputs:
+        all_amr_file: filename with all amrs
+        dev_amr_file: filename with dev amrs
+    Returns:
+        possible_devs: list of (id, snt, amr) tuples
+    """
+    if all_amr_file is None:
+        all_amr_file = GOLD_AMRS
+    if dev_amr_file is None:
+        dev_amr_file = DEV_AMRS
+    obligate_ids = [item[0] for item in get_obligate_amrs(GOLD_AMRS)]
+    obligate_devs = list()
+    dev_tuples = read_amrz(dev_amr_file)
+    dev_comments = dev_tuples[0]
+    dev_amrs = dev_tuples[1]
+    for i in range(len(dev_comments)):
+        if dev_comments[i]['id'] in obligate_ids:
+            #possible_devs.append({'id':dev_comments[i]['id'],'snt':dev_comments[i]['snt'],'amr':dev_amrs[i]})
+            obligate_devs.append((dev_comments[i]['id'],dev_comments[i]['snt'],dev_amrs[i]))
+    #possible_devs = sorted(possible_devs, key=lambda x:int(x['id'].split(' ')[0].split('.')[1]))
+    obligate_devs = sorted(obligate_devs, key=lambda x: int(x[0].split(' ')[0].split('.')[1]))
+    print("Total number of sentences in dev/test sets with 'obligate': {}".format(len(obligate_devs)))
+    return obligate_devs
+
 def write_possible_amrs_from_dict(possible_amrs, destfile):
     """Write AMRs with 'possible' to file
     Inputs:
@@ -170,6 +333,24 @@ def write_possible_amrs_from_dict(possible_amrs, destfile):
             tree_string = Tree.fromstring(tree_string).pformat()
             dest.write('{}\n\n'.format(tree_string.encode('utf8')))
 
+
+def concept_mismatch(all_amr_list, comparison_amr_list, concept):
+    """Find cases where dev amr should have 'possibilty' but doesn't"""
+    missing = list()
+    spurious = list()
+
+    for comparison_amr in comparison_amr_list:
+        matches = [base_tuple for base_tuple in all_amr_list if base_tuple[0] == comparison_amr[0]]
+        if len(matches) > 0:
+            match = matches[0]
+            match_amr = AMR.parse_AMR_line(match[2])
+            match_nodes = match_amr.node_values
+            comparison_nodes = AMR.parse_AMR_line(comparison_amr[2]).node_values
+            if concept in match_nodes and concept not in comparison_nodes:
+                missing.append(comparison_amr[0])
+            elif concept in comparison_nodes and concept not in match_nodes:
+                spurious.append(comparison_tuple[0])
+    return missing, spurious
 
 def find_mismatch():
     """Find cases where dev amr should have 'possibilty' but doesn't"""
@@ -220,12 +401,35 @@ def get_modal_sents():
     return modal_sents
 
 if __name__ == "__main__":
-    #rephrased = rephrase_amrs(all_amr_file=GOLD_AMRS)
+    rephrase_amrs("rephrased2.txt",all_amr_file=UNSEG_SENTS)
     #write_possible_amrs(amr_list=rephrased,destfile='../results/amr_zh_10k_rephrased.txt')
-    possible_amrs = get_possible_amrs(all_amr_file=GOLD_AMRS)
-    write_possible_amrs(possible_amrs, destfile='../results/possible_amrs_wid.txt')
+
+    #latex_dependency(snt1,depstring1,"dep1.txt")
+    #latex_dependency(snt2,depstring2,"dep2.txt")
+
+    """
+    for model_parsed in [BASIC_TEST, SIBLING_TEST]:
+        possible_match = get_amrs_with_concept("possible",GOLD_AMRS)
+        write_match_amrs(possible_match,"possible.txt")
+        comparison_matches = compare_concepts(possible_match,model_parsed)
+        missing, spurious = concept_mismatch(possible_match,comparison_matches,"possible")
+        print("Missing 'possible': {} \n Spurious 'possible': {}".format(len(missing),len(spurious)))
+    """
+    #possible_amrs = get_possible_amrs(all_amr_file=GOLD_AMRS)
+    #write_possible_amrs(possible_amrs, destfile='../results/possible_amrs_wid.txt')
+
     #possible_devs = get_possible_devs(all_amr_file=GOLD_AMRS, dev_amr_file=DEV_AMRS)
     #write_possible_amrs(amr_list=possible_devs,destfile='../results/possible_devs.txt')
+
+
+    """
+    obligate_amrs = get_obligate_amrs(all_amr_file=GOLD_AMRS)
+    write_possible_amrs(obligate_amrs, destfile='../results/obligate_amrs_wid.txt')
+
+    obligate_devs = get_obligate_devs(all_amr_file=GOLD_AMRS, dev_amr_file=DEV_AMRS)
+    write_possible_amrs(amr_list=obligate_devs,destfile='../results/obligate_devs.txt')
+    """
+
     #missing,spurious = find_mismatch()
     #print("Missing 'possibility' concepts: {}".format(len(missing)))
     #print("Spurious 'possibility' concepts: {}".format(len(spurious)))

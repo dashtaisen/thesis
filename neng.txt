@@ -1,0 +1,469 @@
+# ::id export_amr.1076 ::2016-12-30 16:29:24
+# ::snt 随着 流传 的 曾经 不 为 人 知 的 资料 越来越 多 ， 看到 网上 很多 对 自己 当年 为何 会 有 那么 多 钱 捐 为何 能 捡到 那么 多 粪 的 质疑 ——
+# ::wid x1_随着 x2_流传 x3_的 x4_曾经 x5_不 x6_为 x7_人 x8_知 x9_的 x10_资料 x11_越来越 x12_多 x13_， x14_看到 x15_网上 x16_很多 x17_对 x18_自己 x19_当年 x20_为何 x21_会 x22_有 x23_那么 x24_多 x25_钱 x26_捐 x27_为何 x28_能 x29_捡到 x30_那么 x31_多 x32_粪 x33_的 x34_质疑 x35_——
+(x37
+  /
+  and
+  :op1
+  (x1
+    /
+    随着
+    :arg1
+    (x12
+      /
+      多-01
+      :manner
+      (x11 / 越来越)
+      :arg0
+      (x10
+        /
+        资料
+        :arg0-of
+        (x2 / 流传-01)
+        :arg1-of
+        (x8 / 知-01 :arg0 (x7 / 人) :polarity (x5 / -) :time (x4 / 曾经)))))
+  :op2
+  (x14
+    /
+    看到-01
+    :arg1
+    (x34
+      /
+      质疑-01
+      :quant
+      (x16 / 很多)
+      :arg1
+      (x51
+        /
+        and
+        :op1
+        (x21
+          /
+          会-02
+          :arg0
+          (x22
+            /
+            有-01
+            :arg0
+            (x18 / 自己)
+            :arg1
+            (x25 / 钱 :quant (x24 / 多 :degree (x23 / 那么)))
+            :purpose
+            (x26 / 捐-01 :arg1 x25 :arg0 x18))
+          :cause
+          (x20 / amr-unknown))
+        :op2
+        (x28
+          /
+          能
+          :arg0
+          (x29
+            /
+            捡到-01
+            :arg1
+            (x32 / 粪 :quant (x31 / 多 :degree (x30 / 那么)))
+            :cause
+            (x27 / amr-unknown)
+            :arg0
+            x18)
+          :cause
+          x27)))))
+
+# ::id export_amr.2412 ::2017-01-24 11:02:32
+# ::snt 四 印度 目前 也 有 急于 成为 世界 强国 的 愿望 ， 但是 ， 印度 仅 靠 外国 输入 工业 农业 科技 军事 技术 ， 不 能 自主 的确 是 个 大 问题 ，
+# ::wid x1_四 x2_印度 x3_目前 x4_也 x5_有 x6_急于 x7_成为 x8_世界 x9_强国 x10_的 x11_愿望 x12_， x13_但是 x14_， x15_印度 x16_仅 x17_靠 x18_外国 x19_输入 x20_工业 x21_农业 x22_科技 x23_军事 x24_技术 x25_， x26_不 x27_能 x28_自主 x29_的确 x30_是 x31_个 x32_大 x33_问题 x34_，
+(x36
+  /
+  contrast
+  :arg1
+  (x5
+    /
+    有-01
+    :time
+    (x3 / 目前)
+    :mod
+    (x4 / 也)
+    :arg1
+    (x11
+      /
+      愿望
+      :arg0-of
+      (x43
+        /
+        mean
+        :arg1
+        (x6
+          /
+          急于-01
+          :arg1
+          (x7
+            /
+            成为-01
+            :arg1
+            (x9 / 强国 :range (x8 / 世界))
+            :arg0
+            (x67 / country :name (x2 / name :op1 "印度")))
+          :arg0
+          x67)))
+    :arg0
+    x67)
+  :arg2
+  (x33
+    /
+    问题
+    :cunit
+    (x31 / 个)
+    :mod
+    (x29 / 的确)
+    :domain
+    (x55
+      /
+      condition
+      :arg1
+      (x17
+        /
+        靠-01
+        :arg0
+        (x15 / x67)
+        :arg1
+        (x18 / 外国)
+        :purpose
+        (x19
+          /
+          输入-01
+          :arg1
+          (x24
+            /
+            技术
+            :mod
+            (x20 / 工业)
+            :mod
+            (x21 / 农业)
+            :mod
+            (x22 / 科技)
+            :mod
+            (x23 / 军事))))
+      :arg2
+      (x27 / 能 :polarity (x26 / -) :arg0 (x28 / 自主-01 :arg0 x15)))
+    :arg0-of
+    (x32 / 大-01))
+  :li
+  (x1 / 4))
+
+# ::id export_amr.2837 ::2016-10-24 15:33:22
+# ::snt 这样 的 人 也 能 当 人民 代表 真 是 丑闻 。
+# ::wid x1_这样 x2_的 x3_人 x4_也 x5_能 x6_当 x7_人民 x8_代表 x9_真 x10_是 x11_丑闻 x12_。
+(x11
+  /
+  丑闻
+  :domain
+  (x5
+    /
+    能
+    :arg0
+    (x6
+      /
+      当-01
+      :arg0
+      (x3 / 人 :mod (x1 / 这样))
+      :arg1
+      (x8 / 代表-01 :arg1 (x7 / 人民))))
+  :mod
+  (x9 / 真))
+
+# ::id export_amr.3298 ::2017-03-24 11:23:14
+# ::snt 不 只 是 上海市 的 问题 ， 是 国家 的 问题 啊 ， 比如说 工厂 ， 企业 等 ， 来 中国 投资 建厂 ， 凭 什么 又 是 免费 又 免税 ， 又 出 地 呀 ， 他们 哪 能 个 不 比 咱们 国家 的 企业 有 钱 呀 ， 钱 都 江堰市 让 他们 挣 脱 去 了 ， 咱们 自己 的 工厂 企业 却 没有 这么 优慧 的 政策 。
+# ::wid x1_不 x2_只 x3_是 x4_上海市 x5_的 x6_问题 x7_， x8_是 x9_国家 x10_的 x11_问题 x12_啊 x13_， x14_比如说 x15_工厂 x16_， x17_企业 x18_等 x19_， x20_来 x21_中国 x22_投资 x23_建厂 x24_， x25_凭 x26_什么 x27_又 x28_是 x29_免费 x30_又 x31_免税 x32_， x33_又 x34_出 x35_地 x36_呀 x37_， x38_他们 x39_哪 x40_能 x41_个 x42_不 x43_比 x44_咱们 x45_国家 x46_的 x47_企业 x48_有 x49_钱 x50_呀 x51_， x52_钱 x53_都 x54_江堰市 x55_让 x56_他们 x57_挣 x58_脱 x59_去 x60_了 x61_， x62_咱们 x63_自己 x64_的 x65_工厂 x66_企业 x67_却 x68_没有 x69_这么 x70_优慧 x71_的 x72_政策 x73_。
+(x77
+  /
+  and
+  :op1
+  (x6
+    /
+    问题
+    :poss
+    (x80 / city :name (x4 / name :op1 "上海市"))
+    :mod
+    (x2 / 只 :polarity (x1 / -))
+    :domain
+    (x90 / thing))
+  :op2
+  (x11 / 问题 :poss (x9 / 国家) :mode (x12 / expressive) :domain x90)
+  :example
+  (x92
+    /
+    and
+    :op1
+    (x20
+      /
+      来-01
+      :arg0
+      (x94 / and :op1 (x15 / 工厂) :op2 (x17 / 企业) :op3 (x18 / 等))
+      :arg1
+      (x98 / country :name (x21 / name :op1 "中国"))
+      :purpose
+      (x22 / 投资-01 :arg1 (x23 / 建厂-01 :arg0 x94) :arg0 x94))
+    :op2
+    (x102
+      /
+      and
+      :op1
+      (x29 / 免费)
+      :op2
+      (x31 / 免税)
+      :cause
+      (x25_x26 / amr-unknown)
+      :op3
+      (x34 / 出-02 :arg1 (x35 / 地))
+      :mode
+      (x36 / interrogative))
+    :op3
+    (x48_x49
+      /
+      有钱-01
+      :arg0
+      (x110
+        /
+        thing
+        :mod
+        (x39 / amr-unknown)
+        :cunit
+        (x40 / 能)
+        :arg2-of
+        (x117 / include :arg1 (x38 / x94)))
+      :compared-to
+      (x47 / 企业 :poss (x45 / 国家 :poss (x44 / 咱们)))
+      :polarity
+      (x42 / -)
+      :mode
+      (x50 / expressive))
+    :op4
+    (x128
+      /
+      contrast
+      :arg1
+      (x55
+        /
+        让-02
+        :arg1
+        (x56
+          /
+          他们
+          :arg0-of
+          (x122
+            /
+            mean
+            :arg1
+            (x123 / city :name (x54 / name :op1 "江堰市"))))
+        :arg2
+        (x57 / 挣-01 :arg1 (x52 / 钱 :mod (x53 / 都)) :arg0 x123))
+      :arg2
+      (x68_2
+        /
+        有-01
+        :polarity
+        (x68_1 / -)
+        :arg0
+        (x131
+          /
+          and
+          :op1
+          (x65 / 工厂)
+          :op2
+          (x66 / 企业)
+          :poss
+          (x63 / x44))
+        :arg1
+        (x72 / 政策 :arg0-of (x70 / 优惠-01 :degree (x69 / 这么)))))))
+
+# ::id export_amr.4781 ::2017-03-20 20:23:28
+# ::snt 所以说 俄罗斯 这 个 国度 不 是 一般 的 国度 ， 是 需要 足够 价钱 才 能 打动 的 国家 ，
+# ::wid x1_所以说 x2_俄罗斯 x3_这 x4_个 x5_国度 x6_不 x7_是 x8_一般 x9_的 x10_国度 x11_， x12_是 x13_需要 x14_足够 x15_价钱 x16_才 x17_能 x18_打动 x19_的 x20_国家 x21_，
+(x23
+  /
+  causation
+  :arg2
+  (x25
+    /
+    and
+    :op1
+    (x10
+      /
+      国度
+      :arg0-of
+      (x8 / 一般-02)
+      :domain
+      (x5
+        /
+        国度
+        :mod
+        (x3 / 这)
+        :cunit
+        (x4 / 个)
+        :arg0-of
+        (x31
+          /
+          mean
+          :arg1
+          (x32 / country :name (x2 / name :op1 "俄罗斯")))))
+    :op2
+    (x20
+      /
+      国家
+      :arg1-of
+      (x18
+        /
+        打动-01
+        :arg0-of
+        (x17 / 能 :mod (x16 / 才))
+        :manner
+        (x13 / 需要-01 :arg1 (x15 / 价钱 :mod (x14 / 足够))))
+      :domain
+      x32)))
+
+# ::id export_amr.5426 ::2017-04-05 20:55:21
+# ::snt 除了 公司 集体 活动 之外 ， 基本 没 什么 娱乐 放松 过 ， 能 省 就 省 。
+# ::wid x1_除了 x2_公司 x3_集体 x4_活动 x5_之外 x6_， x7_基本 x8_没 x9_什么 x10_娱乐 x11_放松 x12_过 x13_， x14_能 x15_省 x16_就 x17_省 x18_。
+(x20
+  /
+  and
+  :op1
+  (x8
+    /
+    没-01
+    :mod
+    (x7 / 基本)
+    :arg1
+    (x10
+      /
+      娱乐
+      :mod
+      (x9 / amr-unknown)
+      :arg0-of
+      (x1_x5 / 除了 :arg1 (x4 / 活动 :mod (x3 / 集体) :poss (x2 / 公司))))
+    :purpose
+    (x11 / 放松-01 :aspect (x12 / 过)))
+  :op2
+  (x32 / condition :arg1 (x14 / 能 :arg0 (x15 / 省)) :arg2 (x17 / 省)))
+
+# ::id export_amr.7045 ::2017-05-02 10:40:02
+# ::snt 现在 手 拿 能 根本 教改 的 成型 方案 ， 但 苦于 一直 找 不 着 “ 庙门 ” 、 见 不 着 “ 方丈 ” 。
+# ::wid x1_现在 x2_手 x3_拿 x4_能 x5_根本 x6_教改 x7_的 x8_成型 x9_方案 x10_， x11_但 x12_苦于 x13_一直 x14_找 x15_不 x16_着 x17_“ x18_庙门 x19_” x20_、 x21_见 x22_不 x23_着 x24_“ x25_方丈 x26_” x27_。
+(x29
+  /
+  contrast
+  :arg1
+  (x3
+    /
+    拿-03
+    :time
+    (x1 / 现在)
+    :arg1
+    (x9
+      /
+      方案
+      :arg0-of
+      (x8 / 成型-01)
+      :mod
+      (x6 / 教改 :degree (x5 / 根本) :arg0-of (x4 / 能)))
+    :arg0
+    (x2 / 手))
+  :arg2
+  (x12
+    /
+    苦于-01
+    :arg1
+    (x40
+      /
+      and
+      :op1
+      (x16
+        /
+        possilble
+        :arg0
+        (x14 / 找-01 :arg1 (x18 / 庙门))
+        :polarity
+        (x15 / -)
+        :time
+        (x13 / 一直))
+      :op2
+      (x23
+        /
+        possible
+        :arg0
+        (x21 / 见-01 :arg1 (x25 / 方丈))
+        :polarity
+        (x22 / -)))))
+
+# ::id export_amr.9284 ::2017-01-13 16:59:09
+# ::snt 来 ， 就 这 点 水平 ， 能 得到 一 份 不菲 的 薪酬 ， 实属 上苍 的 一时 糊涂 ， 看走 了 眼 。
+# ::wid x1_来 x2_， x3_就 x4_这 x5_点 x6_水平 x7_， x8_能 x9_得到 x10_一 x11_份 x12_不菲 x13_的 x14_薪酬 x15_， x16_实属 x17_上苍 x18_的 x19_一时 x20_糊涂 x21_， x22_看走 x23_了 x24_眼 x25_。
+(x27
+  /
+  and
+  :op1
+  (x1 / 来)
+  :op2
+  (x16
+    /
+    实属-01
+    :arg0
+    (x8
+      /
+      能
+      :arg0
+      (x9
+        /
+        得到-01
+        :arg1
+        (x14
+          /
+          薪酬
+          :arg0-of
+          (x12 / 不菲-01)
+          :quant
+          (x10 / 1)
+          :cunit
+          (x11 / 份))
+        :instrument
+        (x6 / 水平 :mod (x3 / 就) :quant (x5 / 点) :mod (x4 / 这))))
+    :arg1
+    (x41
+      /
+      and
+      :op1
+      (x20 / 糊涂-01 :time (x19 / 一时) :arg0 (x17 / 上苍))
+      :op2
+      (x22_x24 / 看走眼 :arg0 x17 :aspect (x23 / 了)))))
+
+# ::id export_amr.9870 ::2017-06-13 17:34:46
+# ::snt 但 岂 不 知 ， 这 个 节 对 中国 来说 ， 只 能 是 穷人 的 节日 。
+# ::wid x1_但 x2_岂 x3_不 x4_知 x5_， x6_这 x7_个 x8_节 x9_对 x10_中国 x11_来说 x12_， x13_只 x14_能 x15_是 x16_穷人 x17_的 x18_节日 x19_。
+(x21
+  /
+  contrast
+  :arg2
+  (x4
+    /
+    知-01
+    :polarity
+    (x3 / -)
+    :mod
+    (x2 / 岂)
+    :arg1
+    (x11
+      /
+      来说
+      :arg0
+      (x8 / 节 :mod (x6 / 这) :cunit (x7 / 个))
+      :arg1
+      (x30 / country :name (x10 / name :op1 "中国"))
+      :arg2
+      (x14
+        /
+        能
+        :mod
+        (x13 / 只)
+        :arg0
+        (x18 / 节日 :poss (x16 / 穷人) :domain x8)))))
+

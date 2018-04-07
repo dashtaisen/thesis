@@ -1,0 +1,24 @@
+\begin{dependency}[theme = simple]
+\begin{deptext}[column sep=13m]
+哈哈 \& 原来 \& 这些 \& 商界 \& 精英 \& 社会 \& 名流 \& 和 \& 贤达 \& 竟 \& 也 \& 说 \& 得 \& 出 \& 如此 \& 污秽不堪 \& 的 \& 语言 \& 来 \\
+\end{deptext}
+\depedge{5}{1}{nsubj}
+\depedge{5}{2}{advmod}
+\depedge{4}{3}{det}
+\depedge{5}{4}{nsubj}
+\deproot{5}{'ROOT'}
+\depedge{9}{6}{nn}
+\depedge{9}{7}{conj}
+\depedge{9}{8}{cc}
+\depedge{5}{9}{dobj}
+\depedge{12}{10}{advmod}
+\depedge{12}{11}{advmod}
+\depedge{5}{12}{conj}
+\depedge{12}{13}{ccomp}
+\depedge{13}{14}{rcomp}
+\depedge{16}{15}{advmod}
+\depedge{19}{16}{rcmod}
+\depedge{16}{17}{cpm}
+\depedge{19}{18}{nn}
+\depedge{13}{19}{dobj}
+\end{dependency}

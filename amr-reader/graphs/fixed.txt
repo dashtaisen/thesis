@@ -1,0 +1,4 @@
+# ::snt I love you.
+(l / love-01
+  :ARG0 (x1 / I)
+  :ARG1 (x2 / you))
