@@ -110,19 +110,20 @@ def rephrase_amrs(dest_file,all_amr_file=None):
                     elif neg_complement.search(line):
                         line =  neg_complement.sub(r'不 能 \g<1>',line)
                         rephrased_ids.add(current_id)
-                    rephrased_snt = line.replace("# ::snt","")
+                    rephrased_snt = line.replace("# ::snt ","")
                     dest.write(line)
                 elif line.startswith("# ::wid"):
                     sent = rephrased_snt
-                    toks = [tok for tok in rephrased_snt.split(" ") if len(tok) > 0 and not tok.isspace()]
-                    numbered_toks = ["x{}_{}".format(num,tok) for num, tok in enumerate(toks)]
+                    toks = [" " if tok == "\n" else tok for tok in rephrased_snt.split(" ")]
+                    #print(toks)
+                    numbered_toks = ["x{}_{}".format(num,tok) for num, tok in enumerate(toks,1)]
                     wids = ' '.join(numbered_toks)
-                    dest.write("# ::wid {}".format(wids))
+                    dest.write("# ::wid {}\n".format(wids))
                 else:
                     line = line.replace('possible','能-01')
                     dest.write(line)
 
-        print("Rephrased sentences: {}".format(rephrased_ids))
+        #print("Rephrased sentences: {}".format(rephrased_ids))
 
 
 
@@ -401,7 +402,7 @@ def get_modal_sents():
     return modal_sents
 
 if __name__ == "__main__":
-    rephrase_amrs("rephrased2.txt",all_amr_file=UNSEG_SENTS)
+    rephrase_amrs("amr_zh_all_rephrased.txt",all_amr_file=UNSEG_SENTS)
     #write_possible_amrs(amr_list=rephrased,destfile='../results/amr_zh_10k_rephrased.txt')
 
     #latex_dependency(snt1,depstring1,"dep1.txt")
