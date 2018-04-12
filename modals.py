@@ -16,9 +16,10 @@ import random
 AMR_DATA_DIR = os.path.join(os.pardir,'amrz','data')
 RESULTS_DIR = os.path.join(os.pardir,'results')
 #path to training AMRs
-GOLD_AMRS = os.path.join(AMR_DATA_DIR, 'amr_zh_10k.txt.amr')
+GOLD_AMRS = os.path.join(os.curdir, 'amr_zh_all.txt.amr')
 print(GOLD_AMRS)
 #path to dev AMRs
+REPHRASED_GOLD = os.path.join(os.curdir, "amr_zh_all_rephrased.txt.amr")
 BASIC_TEST = os.path.join(AMR_DATA_DIR,'amr_zh_all.txt.test.amr.basic_abt_feat.parsed')
 REPHRASED_TEST = os.path.join(AMR_DATA_DIR,'amr_zh_all.txt.test.amr.basic_abt_feat.parsed')
 SIBLING_TEST = os.path.join(AMR_DATA_DIR,'amr_zh_all.txt.test.amr.sibling_feat.parsed')
@@ -339,7 +340,7 @@ def concept_mismatch(all_amr_list, comparison_amr_list, concept):
     """Find cases where dev amr should have 'possibilty' but doesn't"""
     missing = list()
     spurious = list()
-
+    correct = list()
     for comparison_amr in comparison_amr_list:
         matches = [base_tuple for base_tuple in all_amr_list if base_tuple[0] == comparison_amr[0]]
         if len(matches) > 0:
@@ -347,11 +348,17 @@ def concept_mismatch(all_amr_list, comparison_amr_list, concept):
             match_amr = AMR.parse_AMR_line(match[2])
             match_nodes = match_amr.node_values
             comparison_nodes = AMR.parse_AMR_line(comparison_amr[2]).node_values
+            id_number = int(comparison_amr[0].split('::')[0].split('.')[1])
             if concept in match_nodes and concept not in comparison_nodes:
-                missing.append(comparison_amr[0])
+                #missing.append(comparison_amr[0])
+                missing.append(id_number)
             elif concept in comparison_nodes and concept not in match_nodes:
-                spurious.append(comparison_tuple[0])
-    return missing, spurious
+                #spurious.append(comparison_amr[0])
+                spurious.append(id_number)
+            else:
+                #correct.append(comparison_amr[0])
+                correct.append(id_number)
+    return sorted(correct), sorted(missing), sorted(spurious)
 
 def find_mismatch():
     """Find cases where dev amr should have 'possibilty' but doesn't"""
@@ -402,20 +409,44 @@ def get_modal_sents():
     return modal_sents
 
 if __name__ == "__main__":
-    rephrase_amrs("amr_zh_all_rephrased.txt",all_amr_file=UNSEG_SENTS)
+    #rephrase_amrs("amr_zh_all_rephrased.txt",all_amr_file=UNSEG_SENTS)
     #write_possible_amrs(amr_list=rephrased,destfile='../results/amr_zh_10k_rephrased.txt')
 
     #latex_dependency(snt1,depstring1,"dep1.txt")
     #latex_dependency(snt2,depstring2,"dep2.txt")
 
-    """
-    for model_parsed in [BASIC_TEST, SIBLING_TEST]:
-        possible_match = get_amrs_with_concept("possible",GOLD_AMRS)
-        write_match_amrs(possible_match,"possible.txt")
-        comparison_matches = compare_concepts(possible_match,model_parsed)
-        missing, spurious = concept_mismatch(possible_match,comparison_matches,"possible")
-        print("Missing 'possible': {} \n Spurious 'possible': {}".format(len(missing),len(spurious)))
-    """
+    concept = "能-01"
+    possible_match = get_amrs_with_concept(concept,REPHRASED_GOLD)
+    #write_match_amrs(possible_match,"possible.txt")
+    comparison_matches = compare_concepts(possible_match,REPHRASED_TEST)
+    correct, missing, spurious = concept_mismatch(possible_match,comparison_matches,concept)
+    print("Missing '{0}': {1} \n Spurious '{0}': {2}".format(concept, len(missing),len(spurious)))
+
+
+    concept = "能-01"
+    possible_match = get_amrs_with_concept(concept,GOLD_AMRS)
+    #write_match_amrs(possible_match,"possible.txt")
+    comparison_matches = compare_concepts(possible_match,BASIC_TEST)
+    correct, missing, spurious = concept_mismatch(possible_match,comparison_matches,concept)
+    print("Missing '{0}': {1} \n Spurious '{0}': {2}".format(concept, len(missing),len(spurious)))
+
+
+    concept = "possible"
+    possible_match = get_amrs_with_concept(concept,GOLD_AMRS)
+    #write_match_amrs(possible_match,"possible.txt")
+    comparison_matches = compare_concepts(possible_match,BASIC_TEST)
+    correct, missing, spurious = concept_mismatch(possible_match,comparison_matches,concept)
+    print("Missing '{0}': {1} \n Spurious '{0}': {2}".format(concept, len(missing),len(spurious)))
+    print(correct)
+
+    concept = "possible"
+    possible_match = get_amrs_with_concept(concept,GOLD_AMRS)
+    #write_match_amrs(possible_match,"possible.txt")
+    comparison_matches = compare_concepts(possible_match,SIBLING_TEST)
+    correct, missing, spurious = concept_mismatch(possible_match,comparison_matches,concept)
+    print("Missing '{0}': {1} \n Spurious '{0}': {2}".format(concept, len(missing),len(spurious)))
+    print(correct)
+
     #possible_amrs = get_possible_amrs(all_amr_file=GOLD_AMRS)
     #write_possible_amrs(possible_amrs, destfile='../results/possible_amrs_wid.txt')
 
