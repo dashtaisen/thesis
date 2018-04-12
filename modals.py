@@ -351,13 +351,13 @@ def concept_mismatch(all_amr_list, comparison_amr_list, concept):
             id_number = int(comparison_amr[0].split('::')[0].split('.')[1])
             if concept in match_nodes and concept not in comparison_nodes:
                 #missing.append(comparison_amr[0])
-                missing.append(id_number)
+                missing.append((id_number, comparison_amr[1]))
             elif concept in comparison_nodes and concept not in match_nodes:
                 #spurious.append(comparison_amr[0])
-                spurious.append(id_number)
+                spurious.append((id_number, comparison_amr[1]))
             else:
                 #correct.append(comparison_amr[0])
-                correct.append(id_number)
+                correct.append((id_number, comparison_amr[1]))
     return sorted(correct), sorted(missing), sorted(spurious)
 
 def find_mismatch():
@@ -420,7 +420,9 @@ if __name__ == "__main__":
     #write_match_amrs(possible_match,"possible.txt")
     comparison_matches = compare_concepts(possible_match,REPHRASED_TEST)
     correct, missing, spurious = concept_mismatch(possible_match,comparison_matches,concept)
-    print("Missing '{0}': {1} \n Spurious '{0}': {2}".format(concept, len(missing),len(spurious)))
+    correct_ids = [item[0] for item in correct]
+    missing_ids = [item[0] for item in missing if item[0] in correct_ids]
+    print("Missing '{0}': {1} \n {2} \n Spurious '{0}': {3}".format(concept, len(missing),missing_ids, len(spurious)))
 
 
     concept = "能-01"
@@ -428,7 +430,8 @@ if __name__ == "__main__":
     #write_match_amrs(possible_match,"possible.txt")
     comparison_matches = compare_concepts(possible_match,BASIC_TEST)
     correct, missing, spurious = concept_mismatch(possible_match,comparison_matches,concept)
-    print("Missing '{0}': {1} \n Spurious '{0}': {2}".format(concept, len(missing),len(spurious)))
+    missing_ids = [item[0] for item in missing]
+    print("Missing '{0}': {1} \n {2} \n Spurious '{0}': {3}".format(concept, len(missing),missing_ids, len(spurious)))
 
 
     concept = "possible"
@@ -436,7 +439,8 @@ if __name__ == "__main__":
     #write_match_amrs(possible_match,"possible.txt")
     comparison_matches = compare_concepts(possible_match,BASIC_TEST)
     correct, missing, spurious = concept_mismatch(possible_match,comparison_matches,concept)
-    print("Missing '{0}': {1} \n Spurious '{0}': {2}".format(concept, len(missing),len(spurious)))
+    missing_ids = [item[0] for item in missing]
+    print("Missing '{0}': {1} \n {2} \n Spurious '{0}': {3}".format(concept, len(missing),missing_ids, len(spurious)))
     print(correct)
 
     concept = "possible"
@@ -444,9 +448,9 @@ if __name__ == "__main__":
     #write_match_amrs(possible_match,"possible.txt")
     comparison_matches = compare_concepts(possible_match,SIBLING_TEST)
     correct, missing, spurious = concept_mismatch(possible_match,comparison_matches,concept)
-    print("Missing '{0}': {1} \n Spurious '{0}': {2}".format(concept, len(missing),len(spurious)))
-    print(correct)
-
+    missing_ids = [item[0] for item in missing]
+    print("Missing '{0}': {1} \n {2} \n Spurious '{0}': {3}".format(concept, len(missing),missing_ids, len(spurious)))
+    print("Correct: {}".format(correct))
     #possible_amrs = get_possible_amrs(all_amr_file=GOLD_AMRS)
     #write_possible_amrs(possible_amrs, destfile='../results/possible_amrs_wid.txt')
 
