@@ -1,0 +1,101 @@
+./amr_zh_all.txt.amr
+Testing identification of 能-01 with ./amr_zh_all.txt.amr as gold and ../amrz/data/amr_zh_all.txt.test.amr.basic_abt_feat.parsed as test
+Reading zh amr:
+1000...2000...3000...4000...5000...6000...7000...8000...9000...10000...
+
+Total number of AMRs with '能-01': 712
+Reading zh amr:
+1000...
+
+Total number of sentences in comparison set that should match with all_amr_set: 98
+Missing '能-01': 0 
+ []
+Testing identification of 能-01 with ./amr_zh_all_rephrased.txt.amr as gold and ../amrz/data/amr_zh_all.txt.test.amr.basic_abt_feat.parsed as test
+Reading zh amr:
+1000...2000...3000...4000...5000...6000...7000...8000...9000...10000...
+
+Total number of AMRs with '能-01': 943
+Reading zh amr:
+1000...
+
+Total number of sentences in comparison set that should match with all_amr_set: 136
+Missing '能-01': 38 
+ [1321, 1386, 1453, 1485, 1497, 1537, 1558, 1582, 1599, 1615, 1752, 1766, 1796, 1812, 1864, 1916, 1934, 1954, 1956, 2120, 2141, 2247, 2253, 2304, 2322, 2350, 2351, 2377, 2385, 2397, 2437, 2447, 2449, 2451, 2453, 2487, 2522, 2527]
+Testing identification of possible with ./amr_zh_all.txt.amr as gold and ../amrz/data/amr_zh_all.txt.test.amr.basic_abt_feat.parsed as test
+Reading zh amr:
+1000...2000...3000...4000...5000...6000...7000...8000...9000...10000...
+
+Total number of AMRs with 'possible': 265
+Reading zh amr:
+1000...
+
+Total number of sentences in comparison set that should match with all_amr_set: 43
+Missing 'possible': 29 
+ [1321, 1386, 1453, 1485, 1497, 1537, 1558, 1582, 1615, 1752, 1757, 1796, 1916, 1934, 1954, 2120, 2141, 2247, 2322, 2326, 2385, 2397, 2437, 2447, 2449, 2451, 2453, 2522, 2566]
+Complement counts for missing possible:
+不到: 2
+不出: 3
+不下: 1
+不上: 1
+得到: 2
+得出: 1
+不起: 1
+得了: 2
+Complement counts for correct possible:
+不了: 1
+不起: 2
+得起: 1
+不上: 2
+Testing identification of possible with ./amr_zh_all.txt.amr as gold and ../amrz/data/amr_zh_all.txt.test.amr.sibling_feat.parsed as test
+Reading zh amr:
+1000...2000...3000...4000...5000...6000...7000...8000...9000...10000...
+
+Total number of AMRs with 'possible': 265
+Reading zh amr:
+1000...
+
+Total number of sentences in comparison set that should match with all_amr_set: 43
+Missing 'possible': 29 
+ [1386, 1453, 1485, 1497, 1537, 1558, 1615, 1752, 1757, 1796, 1916, 1934, 1954, 1956, 2120, 2141, 2247, 2304, 2322, 2326, 2385, 2397, 2437, 2447, 2449, 2451, 2453, 2522, 2566]
+Complement counts for missing possible:
+不出: 3
+不下: 1
+得到: 2
+得出: 1
+不上: 1
+不起: 2
+得了: 2
+不到: 1
+Complement counts for correct possible:
+不到: 2
+不上: 2
+不了: 1
+不起: 3
+得起: 1
+Reading zh amr:
+1000...2000...3000...4000...5000...6000...7000...8000...9000...10000...
+
+Total number of AMRs with 'possible': 265
+Reading zh amr:
+1000...
+
+Total number of sentences in comparison set that should match with all_amr_set: 43
+Reading zh amr:
+1000...
+
+Total number of sentences in comparison set that should match with all_amr_set: 43
+Possibles identified in the basic model but not the sibling model:2
+Possibles identified in the sibling model but not the basic model:2
+Reading zh amr:
+1000...2000...3000...4000...5000...6000...7000...8000...9000...10000...
+
+Total number of AMRs with '能-01': 712
+Reading zh amr:
+1000...
+
+Total number of sentences in comparison set that should match with all_amr_set: 98
+Reading zh amr:
+1000...
+
+Total number of sentences in comparison set that should match with all_amr_set: 98
+Nengs missing from rephrased model that were actually nengs in the basic model:0

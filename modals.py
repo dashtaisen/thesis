@@ -408,13 +408,113 @@ def get_modal_sents():
                             modal_sents[modal] = set((current_id, current_sent))
     return modal_sents
 
+def test_concepts():
+
+    pos_complement = re.compile(r'(\w+)\s([得])\s([了起到出来错完上下])')
+    neg_complement = re.compile(r'(\w+)\s([不])\s([了起到出来错完上下])')
+    model_comparisons = dict()
+    test_tuples = [(GOLD_AMRS, BASIC_TEST, "能-01"),
+                    (REPHRASED_GOLD, REPHRASED_TEST, "能-01"),
+                    (GOLD_AMRS, BASIC_TEST, "possible"),
+                    (GOLD_AMRS, SIBLING_TEST, "possible")
+    ]
+
+    for gold_amr, test_amr, concept in test_tuples:
+        print("Testing identification of {} with {} as gold and {} as test".format(concept,gold_amr,test_amr))
+        gold_concept_matches = get_amrs_with_concept(concept,gold_amr)
+        test_concept_matches = compare_concepts(gold_concept_matches,test_amr)
+        correct, missing, spurious = concept_mismatch(gold_concept_matches,test_concept_matches,concept)
+        correct_ids = [item[0] for item in correct]
+        correct_sents = [item[1] for item in correct]
+        missing_ids = [item[0] for item in missing]
+        missing_sents = [item[1] for item in missing]
+        print("Missing '{0}': {1} \n {2}".format(concept, len(missing),missing_ids))
+
+        #print("Sents missing '{0}': {1}".format(concept, missing_sents))
+        #print("Sents correctly identifying '{0}': {1}".format(concept, correct_sents))
+
+        if concept == "possible":
+            missing_complement_counts = dict()
+            correct_complement_counts = dict()
+            for sent in missing_sents:
+                pos_complement_match = pos_complement.search(sent)
+                if pos_complement_match:
+                    verb = pos_complement_match.group(1)
+                    particle = pos_complement_match.group(2)
+                    complement = pos_complement_match.group(3)
+                    #for item in (verb, particle, complement):
+                        #missing_complement_counts[item] = missing_complement_counts.get(item,0) + 1
+                    missing_complement_counts[particle + complement] = missing_complement_counts.get(particle+complement,0) + 1
+
+                neg_complement_match = neg_complement.search(sent)
+                if neg_complement_match:
+                    verb = neg_complement_match.group(1)
+                    particle = neg_complement_match.group(2)
+                    complement = neg_complement_match.group(3)
+                    #for item in (verb, particle, complement):
+                        #missing_complement_counts[item] = missing_complement_counts.get(item,0) + 1
+                    missing_complement_counts[particle + complement] = missing_complement_counts.get(particle+complement,0) + 1
+
+            for sent in correct_sents:
+                pos_complement_match = pos_complement.search(sent)
+                if pos_complement_match:
+                    verb = pos_complement_match.group(1)
+                    particle = pos_complement_match.group(2)
+                    complement = pos_complement_match.group(3)
+                    #for item in (verb, particle, complement):
+                        #correct_complement_counts[item] = correct_complement_counts.get(item,0) + 1
+                    correct_complement_counts[particle + complement] = missing_complement_counts.get(particle+complement,0) + 1
+
+                neg_complement_match = neg_complement.search(sent)
+                if neg_complement_match:
+                    verb = neg_complement_match.group(1)
+                    particle = neg_complement_match.group(2)
+                    complement = neg_complement_match.group(3)
+                    #for item in (verb, particle, complement):
+                        #correct_complement_counts[item] = missing_complement_counts.get(item,0) + 1
+                    correct_complement_counts[particle + complement] = missing_complement_counts.get(particle+complement,0) + 1
+
+
+            print("Complement counts for missing {}:".format(concept))
+            for key in missing_complement_counts.keys():
+                print("{}: {}".format(key, missing_complement_counts[key]))
+
+            print("Complement counts for correct {}:".format(concept))
+            for key in correct_complement_counts.keys():
+                print("{}: {}".format(key, correct_complement_counts[key]))
+
+    gold_concept_matches = get_amrs_with_concept("possible",GOLD_AMRS)
+    basic_test_concept_matches = compare_concepts(gold_concept_matches,BASIC_TEST)
+    sibling_test_concept_matches = compare_concepts(gold_concept_matches,SIBLING_TEST)
+
+    basic_correct, basic_missing, basic_spurious = concept_mismatch(gold_concept_matches,basic_test_concept_matches,"possible")
+    sibling_correct, sibling_missing, sibling_spurious = concept_mismatch(gold_concept_matches,sibling_test_concept_matches,"possible")
+
+    basic_not_sibling_possible = len([item[0] for item in basic_correct if item in sibling_missing])
+    print("Possibles identified in the basic model but not the sibling model:{}".format(basic_not_sibling_possible))
+
+    sibling_not_basic_possible = len([item[0] for item in sibling_correct if item in basic_missing])
+    print("Possibles identified in the sibling model but not the basic model:{}".format(sibling_not_basic_possible))
+
+    gold_concept_matches = get_amrs_with_concept("能-01",GOLD_AMRS)
+    basic_test_concept_matches = compare_concepts(gold_concept_matches,BASIC_TEST)
+    rephrased_test_concept_matches = compare_concepts(gold_concept_matches,REPHRASED_TEST)
+    basic_correct, basic_missing, basic_spurious = concept_mismatch(gold_concept_matches,basic_test_concept_matches,"能-01")
+    rephrased_correct, rephrased_missing, rephrased_spurious = concept_mismatch(gold_concept_matches,rephrased_test_concept_matches,"能-01")
+    rephrased_extra_neng = len([item[0] for item in rephrased_missing if item in basic_correct])
+    print("Nengs missing from rephrased model that were actually nengs in the basic model:{}".format(rephrased_extra_neng))
+
 if __name__ == "__main__":
+    test_concepts()
     #rephrase_amrs("amr_zh_all_rephrased.txt",all_amr_file=UNSEG_SENTS)
     #write_possible_amrs(amr_list=rephrased,destfile='../results/amr_zh_10k_rephrased.txt')
 
     #latex_dependency(snt1,depstring1,"dep1.txt")
     #latex_dependency(snt2,depstring2,"dep2.txt")
 
+    #write_match_amrs(possible_match,"possible.txt")
+
+    """
     concept = "能-01"
     possible_match = get_amrs_with_concept(concept,REPHRASED_GOLD)
     #write_match_amrs(possible_match,"possible.txt")
@@ -456,7 +556,7 @@ if __name__ == "__main__":
 
     #possible_devs = get_possible_devs(all_amr_file=GOLD_AMRS, dev_amr_file=DEV_AMRS)
     #write_possible_amrs(amr_list=possible_devs,destfile='../results/possible_devs.txt')
-
+    """
 
     """
     obligate_amrs = get_obligate_amrs(all_amr_file=GOLD_AMRS)
