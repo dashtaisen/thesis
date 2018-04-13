@@ -13,6 +13,10 @@ from amr import AMR
 from smatch import get_amr_line
 import random
 
+COMPLEMENT_TYPO = [1453, 1485, 1497, 1558, 1615, 1916, 1934, 1954, 2247, 2397, 2437, 2447, 2449, 2451, 2453]
+#REGEX missed 过 通 回来 响 懂 及 受
+#1453 1954 2397 2451? has typo
+
 AMR_DATA_DIR = os.path.join(os.pardir,'amrz','data')
 RESULTS_DIR = os.path.join(os.pardir,'results')
 #path to training AMRs
@@ -21,7 +25,7 @@ print(GOLD_AMRS)
 #path to dev AMRs
 REPHRASED_GOLD = os.path.join(os.curdir, "amr_zh_all_rephrased.txt.amr")
 BASIC_TEST = os.path.join(AMR_DATA_DIR,'amr_zh_all.txt.test.amr.basic_abt_feat.parsed')
-REPHRASED_TEST = os.path.join(AMR_DATA_DIR,'amr_zh_all.txt.test.amr.basic_abt_feat.parsed')
+REPHRASED_TEST = os.path.join(os.curdir,'amr_zh_all_rephrased.txt.test.amr.basic_abt_feat.parsed')
 SIBLING_TEST = os.path.join(AMR_DATA_DIR,'amr_zh_all.txt.test.amr.sibling_feat.parsed')
 
 DEV_AMRS = os.path.join(AMR_DATA_DIR, 'amr_zh_all.txt.dev.amr.basic_abt_feat.1.parsed')
@@ -44,6 +48,9 @@ MODAL_ZH = ['能','可能','可以','得起','得了','必须','应该',
 # ::snt 最近 ， 我们 通过 知情 人士 从 衡阳市 殡葬 管理处 财务 部门 复印 出 部分 原始 发票 凭证 11 份 （ 共计 有 30余 份 ） 。
 # ::wid x1_最近 x2_， x3_我们 x4_通过 x5_知情 x6_人士 x7_从 x8_衡阳市 x9_殡葬 x10_管理处 x11_财务 x12_部门 x13_复印 x14_出 x15_部分 x16_原始 x17_发票 x18_凭证 x19_11 x20_份 x21_（ x22_共计 x23_有 x24_30余 x25_份 x26_） x27_。 x28_
 """
+
+
+
 def get_dependency_tuple_elements(deptup):
     relre = re.compile(r"(\w+)\((\w+-\d+), ([^\-]+-\d+)\)")
     relre_match = relre.match(deptup)
@@ -149,6 +156,32 @@ def get_amrs_with_concept(concept,all_amr_file=None):
             #possible_ids.append((comments[i]['id'].encode('utf8'),comments[i]['snt'].encode('utf8'),amrs[i].encode('utf8')))
     print("Total number of AMRs with '{}': {}".format(concept,len(match_amrs)))
     return sorted(match_amrs,key=lambda x: int(x[0].split(' ')[0].split('.')[1])) #sort by id number
+
+def count_verb_complements():
+    complement_counts = dict()
+    complement_phrase_counts = dict()
+    concept = "possible"
+    possible_amrs = get_amrs_with_concept(concept,all_amr_file=GOLD_AMRS)
+    pos_complement = re.compile(r'(\w+)\s([得])\s([了起到出来错完上下过通回响懂及受])')
+    neg_complement = re.compile(r'(\w+)\s([不])\s([了起到出来错完上下过通回响懂及受])')
+    for possible_amr in possible_amrs:
+        sent = possible_amr[1]
+        pos_match = pos_complement.search(sent)
+        if pos_match:
+            complement = pos_match.group(2) + pos_match.group(3)
+            phrase = pos_match.group(0)
+            complement_counts[complement] = complement_counts.get(complement,0) + 1
+            complement_phrase_counts[phrase] = complement_phrase_counts.get(phrase,0) + 1
+        neg_match = neg_complement.search(sent)
+        if neg_match:
+            complement = neg_match.group(2) + neg_match.group(3)
+            phrase = neg_match.group(0)
+            complement_counts[complement] = complement_counts.get(complement,0) + 1
+            complement_phrase_counts[phrase] = complement_phrase_counts.get(phrase,0) + 1
+    for complement in sorted(complement_counts.keys()):
+        print("{}: {}".format(complement,complement_counts[complement]))
+    for phrase in sorted(complement_phrase_counts.keys()):
+        print("{}: {}".format(phrase,complement_phrase_counts[phrase]))
 
 #def write_possible_amrs(destfile,all_amr_file=None):
 def write_match_amrs(amr_list,destfile):
@@ -419,6 +452,7 @@ def test_concepts():
                     (GOLD_AMRS, SIBLING_TEST, "possible")
     ]
 
+
     for gold_amr, test_amr, concept in test_tuples:
         print("Testing identification of {} with {} as gold and {} as test".format(concept,gold_amr,test_amr))
         gold_concept_matches = get_amrs_with_concept(concept,gold_amr)
@@ -436,24 +470,29 @@ def test_concepts():
         if concept == "possible":
             missing_complement_counts = dict()
             correct_complement_counts = dict()
+            missing_phrase_counts = dict()
+            correct_phrase_counts = dict()
             for sent in missing_sents:
                 pos_complement_match = pos_complement.search(sent)
                 if pos_complement_match:
                     verb = pos_complement_match.group(1)
                     particle = pos_complement_match.group(2)
                     complement = pos_complement_match.group(3)
+                    phrase = pos_complement_match.group(0)
                     #for item in (verb, particle, complement):
                         #missing_complement_counts[item] = missing_complement_counts.get(item,0) + 1
                     missing_complement_counts[particle + complement] = missing_complement_counts.get(particle+complement,0) + 1
-
+                    missing_phrase_counts[phrase] = missing_phrase_counts.get(phrase,0) + 1
                 neg_complement_match = neg_complement.search(sent)
                 if neg_complement_match:
                     verb = neg_complement_match.group(1)
                     particle = neg_complement_match.group(2)
                     complement = neg_complement_match.group(3)
+                    phrase = neg_complement_match.group(0)
                     #for item in (verb, particle, complement):
                         #missing_complement_counts[item] = missing_complement_counts.get(item,0) + 1
                     missing_complement_counts[particle + complement] = missing_complement_counts.get(particle+complement,0) + 1
+                    missing_phrase_counts[phrase] = missing_phrase_counts.get(phrase,0) + 1
 
             for sent in correct_sents:
                 pos_complement_match = pos_complement.search(sent)
@@ -461,27 +500,42 @@ def test_concepts():
                     verb = pos_complement_match.group(1)
                     particle = pos_complement_match.group(2)
                     complement = pos_complement_match.group(3)
+                    phrase = pos_complement_match.group(0)
+
                     #for item in (verb, particle, complement):
                         #correct_complement_counts[item] = correct_complement_counts.get(item,0) + 1
-                    correct_complement_counts[particle + complement] = missing_complement_counts.get(particle+complement,0) + 1
+                    correct_complement_counts[particle + complement] = correct_complement_counts.get(particle+complement,0) + 1
+                    correct_phrase_counts[phrase] = correct_phrase_counts.get(phrase,0) + 1
 
                 neg_complement_match = neg_complement.search(sent)
                 if neg_complement_match:
                     verb = neg_complement_match.group(1)
                     particle = neg_complement_match.group(2)
                     complement = neg_complement_match.group(3)
+                    phrase = neg_complement_match.group(0)
+
                     #for item in (verb, particle, complement):
                         #correct_complement_counts[item] = missing_complement_counts.get(item,0) + 1
-                    correct_complement_counts[particle + complement] = missing_complement_counts.get(particle+complement,0) + 1
+                    correct_complement_counts[particle + complement] = correct_complement_counts.get(particle+complement,0) + 1
+                    correct_phrase_counts[phrase] = correct_phrase_counts.get(phrase,0) + 1
 
 
             print("Complement counts for missing {}:".format(concept))
-            for key in missing_complement_counts.keys():
+            for key in sorted(list(missing_complement_counts.keys())):
                 print("{}: {}".format(key, missing_complement_counts[key]))
 
             print("Complement counts for correct {}:".format(concept))
-            for key in correct_complement_counts.keys():
+            for key in sorted(list(correct_complement_counts.keys())):
                 print("{}: {}".format(key, correct_complement_counts[key]))
+
+            print("Phrase counts for missing {}:".format(concept))
+            for key in sorted(list(missing_phrase_counts.keys())):
+                print("{}: {}".format(key, missing_phrase_counts[key]))
+
+            print("Phrase counts for correct {}:".format(concept))
+            for key in sorted(list(correct_phrase_counts.keys())):
+                print("{}: {}".format(key, correct_phrase_counts[key]))
+
 
     gold_concept_matches = get_amrs_with_concept("possible",GOLD_AMRS)
     basic_test_concept_matches = compare_concepts(gold_concept_matches,BASIC_TEST)
@@ -504,8 +558,10 @@ def test_concepts():
     rephrased_extra_neng = len([item[0] for item in rephrased_missing if item in basic_correct])
     print("Nengs missing from rephrased model that were actually nengs in the basic model:{}".format(rephrased_extra_neng))
 
+
 if __name__ == "__main__":
-    test_concepts()
+    count_verb_complements()
+    #test_concepts()
     #rephrase_amrs("amr_zh_all_rephrased.txt",all_amr_file=UNSEG_SENTS)
     #write_possible_amrs(amr_list=rephrased,destfile='../results/amr_zh_10k_rephrased.txt')
 

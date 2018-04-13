@@ -1,0 +1,1050 @@
+./amr_zh_all.txt.amr
+Testing identification of 能-01 with ./amr_zh_all.txt.amr as gold and ../amrz/data/amr_zh_all.txt.test.amr.basic_abt_feat.parsed as test
+Reading zh amr:
+1000...2000...3000...4000...5000...6000...7000...8000...9000...10000...
+
+Total number of AMRs with '能-01': 712
+Reading zh amr:
+1000...
+
+Total number of sentences in comparison set that should match with all_amr_set: 98
+Missing '能-01': 0 
+ []
+Testing identification of 能-01 with ./amr_zh_all_rephrased.txt.amr as gold and ../amrz/data/amr_zh_all.txt.test.amr.basic_abt_feat.parsed as test
+Reading zh amr:
+1000...2000...3000...4000...5000...6000...7000...8000...9000...10000...
+
+Total number of AMRs with '能-01': 943
+Reading zh amr:
+1000...
+
+Total number of sentences in comparison set that should match with all_amr_set: 136
+Missing '能-01': 38 
+ [1321, 1386, 1453, 1485, 1497, 1537, 1558, 1582, 1599, 1615, 1752, 1766, 1796, 1812, 1864, 1916, 1934, 1954, 1956, 2120, 2141, 2247, 2253, 2304, 2322, 2350, 2351, 2377, 2385, 2397, 2437, 2447, 2449, 2451, 2453, 2487, 2522, 2527]
+Testing identification of possible with ./amr_zh_all.txt.amr as gold and ../amrz/data/amr_zh_all.txt.test.amr.basic_abt_feat.parsed as test
+Reading zh amr:
+1000...2000...3000...4000...5000...6000...7000...8000...9000...10000...
+
+Total number of AMRs with 'possible': 265
+Reading zh amr:
+1000...
+
+Total number of sentences in comparison set that should match with all_amr_set: 43
+Missing 'possible': 29 
+ [1321, 1386, 1453, 1485, 1497, 1537, 1558, 1582, 1615, 1752, 1757, 1796, 1916, 1934, 1954, 2120, 2141, 2247, 2322, 2326, 2385, 2397, 2437, 2447, 2449, 2451, 2453, 2522, 2566]
+Complement counts for missing possible:
+不上: 1
+不下: 1
+不出: 3
+不到: 2
+不起: 1
+得了: 2
+得出: 1
+得到: 2
+Complement counts for correct possible:
+不了: 1
+Phrase counts for missing possible:
+估计 不 出: 1
+出 得 了: 1
+发展 不 起: 1
+坚持 不 到: 1
+想 得 出: 1
+想 得 到: 1
+想象 得 到: 1
+承受 得 了: 1
+看 不 到: 1
+笑 不 出: 1
+谈 不 上: 1
+进行 不 下: 1
+预估 不 出: 1
+Phrase counts for correct possible:
+受 不 了: 1
+Complement counts for missing possible:
+不上: 1
+不下: 1
+不出: 3
+不到: 2
+不起: 1
+得了: 2
+得出: 1
+得到: 2
+Complement counts for correct possible:
+不了: 2
+Phrase counts for missing possible:
+估计 不 出: 1
+出 得 了: 1
+发展 不 起: 1
+坚持 不 到: 1
+想 得 出: 1
+想 得 到: 1
+想象 得 到: 1
+承受 得 了: 1
+看 不 到: 1
+笑 不 出: 1
+谈 不 上: 1
+进行 不 下: 1
+预估 不 出: 1
+Phrase counts for correct possible:
+受 不 了: 2
+Complement counts for missing possible:
+不上: 1
+不下: 1
+不出: 3
+不到: 2
+不起: 1
+得了: 2
+得出: 1
+得到: 2
+Complement counts for correct possible:
+不了: 3
+Phrase counts for missing possible:
+估计 不 出: 1
+出 得 了: 1
+发展 不 起: 1
+坚持 不 到: 1
+想 得 出: 1
+想 得 到: 1
+想象 得 到: 1
+承受 得 了: 1
+看 不 到: 1
+笑 不 出: 1
+谈 不 上: 1
+进行 不 下: 1
+预估 不 出: 1
+Phrase counts for correct possible:
+受 不 了: 2
+回答 不 了: 1
+Complement counts for missing possible:
+不上: 1
+不下: 1
+不出: 3
+不到: 2
+不起: 1
+得了: 2
+得出: 1
+得到: 2
+Complement counts for correct possible:
+不了: 3
+不起: 1
+Phrase counts for missing possible:
+估计 不 出: 1
+出 得 了: 1
+发展 不 起: 1
+坚持 不 到: 1
+想 得 出: 1
+想 得 到: 1
+想象 得 到: 1
+承受 得 了: 1
+看 不 到: 1
+笑 不 出: 1
+谈 不 上: 1
+进行 不 下: 1
+预估 不 出: 1
+Phrase counts for correct possible:
+买 不 起: 1
+受 不 了: 2
+回答 不 了: 1
+Complement counts for missing possible:
+不上: 1
+不下: 1
+不出: 3
+不到: 2
+不起: 1
+得了: 2
+得出: 1
+得到: 2
+Complement counts for correct possible:
+不了: 3
+不起: 1
+得起: 1
+Phrase counts for missing possible:
+估计 不 出: 1
+出 得 了: 1
+发展 不 起: 1
+坚持 不 到: 1
+想 得 出: 1
+想 得 到: 1
+想象 得 到: 1
+承受 得 了: 1
+看 不 到: 1
+笑 不 出: 1
+谈 不 上: 1
+进行 不 下: 1
+预估 不 出: 1
+Phrase counts for correct possible:
+买 不 起: 1
+买 得 起: 1
+受 不 了: 2
+回答 不 了: 1
+Complement counts for missing possible:
+不上: 1
+不下: 1
+不出: 3
+不到: 2
+不起: 1
+得了: 2
+得出: 1
+得到: 2
+Complement counts for correct possible:
+不上: 1
+不了: 3
+不起: 1
+得起: 1
+Phrase counts for missing possible:
+估计 不 出: 1
+出 得 了: 1
+发展 不 起: 1
+坚持 不 到: 1
+想 得 出: 1
+想 得 到: 1
+想象 得 到: 1
+承受 得 了: 1
+看 不 到: 1
+笑 不 出: 1
+谈 不 上: 1
+进行 不 下: 1
+预估 不 出: 1
+Phrase counts for correct possible:
+买 不 起: 1
+买 得 起: 1
+受 不 了: 2
+吃 不 上: 1
+回答 不 了: 1
+Complement counts for missing possible:
+不上: 1
+不下: 1
+不出: 3
+不到: 2
+不起: 1
+得了: 2
+得出: 1
+得到: 2
+Complement counts for correct possible:
+不上: 1
+不了: 4
+不起: 1
+得起: 1
+Phrase counts for missing possible:
+估计 不 出: 1
+出 得 了: 1
+发展 不 起: 1
+坚持 不 到: 1
+想 得 出: 1
+想 得 到: 1
+想象 得 到: 1
+承受 得 了: 1
+看 不 到: 1
+笑 不 出: 1
+谈 不 上: 1
+进行 不 下: 1
+预估 不 出: 1
+Phrase counts for correct possible:
+买 不 起: 1
+买 得 起: 1
+受 不 了: 2
+吃 不 上: 1
+回答 不 了: 1
+成 不 了: 1
+Complement counts for missing possible:
+不上: 1
+不下: 1
+不出: 3
+不到: 2
+不起: 1
+得了: 2
+得出: 1
+得到: 2
+Complement counts for correct possible:
+不上: 1
+不了: 4
+不起: 2
+得起: 1
+Phrase counts for missing possible:
+估计 不 出: 1
+出 得 了: 1
+发展 不 起: 1
+坚持 不 到: 1
+想 得 出: 1
+想 得 到: 1
+想象 得 到: 1
+承受 得 了: 1
+看 不 到: 1
+笑 不 出: 1
+谈 不 上: 1
+进行 不 下: 1
+预估 不 出: 1
+Phrase counts for correct possible:
+买 不 起: 1
+买 得 起: 1
+受 不 了: 2
+吃 不 上: 1
+回答 不 了: 1
+成 不 了: 1
+记 不 起: 1
+Complement counts for missing possible:
+不上: 1
+不下: 1
+不出: 3
+不到: 2
+不起: 1
+得了: 2
+得出: 1
+得到: 2
+Complement counts for correct possible:
+不上: 1
+不了: 5
+不起: 2
+得起: 1
+Phrase counts for missing possible:
+估计 不 出: 1
+出 得 了: 1
+发展 不 起: 1
+坚持 不 到: 1
+想 得 出: 1
+想 得 到: 1
+想象 得 到: 1
+承受 得 了: 1
+看 不 到: 1
+笑 不 出: 1
+谈 不 上: 1
+进行 不 下: 1
+预估 不 出: 1
+Phrase counts for correct possible:
+买 不 起: 1
+买 得 起: 1
+受 不 了: 2
+吃 不 上: 1
+回答 不 了: 1
+存 不 了: 1
+成 不 了: 1
+记 不 起: 1
+Complement counts for missing possible:
+不上: 1
+不下: 1
+不出: 3
+不到: 2
+不起: 1
+得了: 2
+得出: 1
+得到: 2
+Complement counts for correct possible:
+不上: 1
+不了: 6
+不起: 2
+得起: 1
+Phrase counts for missing possible:
+估计 不 出: 1
+出 得 了: 1
+发展 不 起: 1
+坚持 不 到: 1
+想 得 出: 1
+想 得 到: 1
+想象 得 到: 1
+承受 得 了: 1
+看 不 到: 1
+笑 不 出: 1
+谈 不 上: 1
+进行 不 下: 1
+预估 不 出: 1
+Phrase counts for correct possible:
+买 不 起: 1
+买 得 起: 1
+受 不 了: 2
+吃 不 上: 1
+回答 不 了: 1
+存 不 了: 1
+少 不 了: 1
+成 不 了: 1
+记 不 起: 1
+Complement counts for missing possible:
+不上: 1
+不下: 1
+不出: 3
+不到: 2
+不起: 1
+得了: 2
+得出: 1
+得到: 2
+Complement counts for correct possible:
+不上: 1
+不了: 7
+不起: 2
+得起: 1
+Phrase counts for missing possible:
+估计 不 出: 1
+出 得 了: 1
+发展 不 起: 1
+坚持 不 到: 1
+想 得 出: 1
+想 得 到: 1
+想象 得 到: 1
+承受 得 了: 1
+看 不 到: 1
+笑 不 出: 1
+谈 不 上: 1
+进行 不 下: 1
+预估 不 出: 1
+Phrase counts for correct possible:
+买 不 起: 1
+买 得 起: 1
+受 不 了: 2
+吃 不 上: 1
+回答 不 了: 1
+存 不 了: 1
+少 不 了: 2
+成 不 了: 1
+记 不 起: 1
+Complement counts for missing possible:
+不上: 1
+不下: 1
+不出: 3
+不到: 2
+不起: 1
+得了: 2
+得出: 1
+得到: 2
+Complement counts for correct possible:
+不上: 1
+不了: 8
+不起: 2
+得起: 1
+Phrase counts for missing possible:
+估计 不 出: 1
+出 得 了: 1
+发展 不 起: 1
+坚持 不 到: 1
+想 得 出: 1
+想 得 到: 1
+想象 得 到: 1
+承受 得 了: 1
+看 不 到: 1
+笑 不 出: 1
+谈 不 上: 1
+进行 不 下: 1
+预估 不 出: 1
+Phrase counts for correct possible:
+买 不 起: 1
+买 得 起: 1
+受 不 了: 2
+吃 不 上: 1
+回答 不 了: 1
+存 不 了: 1
+少 不 了: 2
+成 不 了: 1
+解决 不 了: 1
+记 不 起: 1
+Complement counts for missing possible:
+不上: 1
+不下: 1
+不出: 3
+不到: 2
+不起: 1
+得了: 2
+得出: 1
+得到: 2
+Complement counts for correct possible:
+不上: 1
+不了: 9
+不起: 2
+得起: 1
+Phrase counts for missing possible:
+估计 不 出: 1
+出 得 了: 1
+发展 不 起: 1
+坚持 不 到: 1
+想 得 出: 1
+想 得 到: 1
+想象 得 到: 1
+承受 得 了: 1
+看 不 到: 1
+笑 不 出: 1
+谈 不 上: 1
+进行 不 下: 1
+预估 不 出: 1
+Phrase counts for correct possible:
+买 不 起: 1
+买 得 起: 1
+受 不 了: 2
+吃 不 上: 1
+回答 不 了: 1
+存 不 了: 1
+少 不 了: 2
+成 不 了: 1
+解决 不 了: 1
+记 不 起: 1
+顾 不 了: 1
+Complement counts for missing possible:
+不上: 1
+不下: 1
+不出: 3
+不到: 2
+不起: 1
+得了: 2
+得出: 1
+得到: 2
+Complement counts for correct possible:
+不上: 2
+不了: 9
+不起: 2
+得起: 1
+Phrase counts for missing possible:
+估计 不 出: 1
+出 得 了: 1
+发展 不 起: 1
+坚持 不 到: 1
+想 得 出: 1
+想 得 到: 1
+想象 得 到: 1
+承受 得 了: 1
+看 不 到: 1
+笑 不 出: 1
+谈 不 上: 1
+进行 不 下: 1
+预估 不 出: 1
+Phrase counts for correct possible:
+买 不 起: 1
+买 得 起: 1
+受 不 了: 2
+吃 不 上: 1
+回答 不 了: 1
+存 不 了: 1
+少 不 了: 2
+成 不 了: 1
+指望 不 上: 1
+解决 不 了: 1
+记 不 起: 1
+顾 不 了: 1
+Testing identification of possible with ./amr_zh_all.txt.amr as gold and ../amrz/data/amr_zh_all.txt.test.amr.sibling_feat.parsed as test
+Reading zh amr:
+1000...2000...3000...4000...5000...6000...7000...8000...9000...10000...
+
+Total number of AMRs with 'possible': 265
+Reading zh amr:
+1000...
+
+Total number of sentences in comparison set that should match with all_amr_set: 43
+Missing 'possible': 29 
+ [1386, 1453, 1485, 1497, 1537, 1558, 1615, 1752, 1757, 1796, 1916, 1934, 1954, 1956, 2120, 2141, 2247, 2304, 2322, 2326, 2385, 2397, 2437, 2447, 2449, 2451, 2453, 2522, 2566]
+Complement counts for missing possible:
+不上: 1
+不下: 1
+不出: 3
+不到: 1
+不起: 2
+得了: 2
+得出: 1
+得到: 2
+Complement counts for correct possible:
+不到: 1
+Phrase counts for missing possible:
+估计 不 出: 1
+出 得 了: 1
+发展 不 起: 1
+吃 不 上: 1
+想 得 出: 1
+想 得 到: 1
+想象 得 到: 1
+承受 得 了: 1
+看 不 到: 1
+笑 不 出: 1
+记 不 起: 1
+进行 不 下: 1
+预估 不 出: 1
+Phrase counts for correct possible:
+坚持 不 到: 1
+Complement counts for missing possible:
+不上: 1
+不下: 1
+不出: 3
+不到: 1
+不起: 2
+得了: 2
+得出: 1
+得到: 2
+Complement counts for correct possible:
+不上: 1
+不到: 1
+Phrase counts for missing possible:
+估计 不 出: 1
+出 得 了: 1
+发展 不 起: 1
+吃 不 上: 1
+想 得 出: 1
+想 得 到: 1
+想象 得 到: 1
+承受 得 了: 1
+看 不 到: 1
+笑 不 出: 1
+记 不 起: 1
+进行 不 下: 1
+预估 不 出: 1
+Phrase counts for correct possible:
+坚持 不 到: 1
+谈 不 上: 1
+Complement counts for missing possible:
+不上: 1
+不下: 1
+不出: 3
+不到: 1
+不起: 2
+得了: 2
+得出: 1
+得到: 2
+Complement counts for correct possible:
+不上: 1
+不了: 1
+不到: 1
+Phrase counts for missing possible:
+估计 不 出: 1
+出 得 了: 1
+发展 不 起: 1
+吃 不 上: 1
+想 得 出: 1
+想 得 到: 1
+想象 得 到: 1
+承受 得 了: 1
+看 不 到: 1
+笑 不 出: 1
+记 不 起: 1
+进行 不 下: 1
+预估 不 出: 1
+Phrase counts for correct possible:
+受 不 了: 1
+坚持 不 到: 1
+谈 不 上: 1
+Complement counts for missing possible:
+不上: 1
+不下: 1
+不出: 3
+不到: 1
+不起: 2
+得了: 2
+得出: 1
+得到: 2
+Complement counts for correct possible:
+不上: 1
+不了: 2
+不到: 1
+Phrase counts for missing possible:
+估计 不 出: 1
+出 得 了: 1
+发展 不 起: 1
+吃 不 上: 1
+想 得 出: 1
+想 得 到: 1
+想象 得 到: 1
+承受 得 了: 1
+看 不 到: 1
+笑 不 出: 1
+记 不 起: 1
+进行 不 下: 1
+预估 不 出: 1
+Phrase counts for correct possible:
+受 不 了: 2
+坚持 不 到: 1
+谈 不 上: 1
+Complement counts for missing possible:
+不上: 1
+不下: 1
+不出: 3
+不到: 1
+不起: 2
+得了: 2
+得出: 1
+得到: 2
+Complement counts for correct possible:
+不上: 1
+不了: 3
+不到: 1
+Phrase counts for missing possible:
+估计 不 出: 1
+出 得 了: 1
+发展 不 起: 1
+吃 不 上: 1
+想 得 出: 1
+想 得 到: 1
+想象 得 到: 1
+承受 得 了: 1
+看 不 到: 1
+笑 不 出: 1
+记 不 起: 1
+进行 不 下: 1
+预估 不 出: 1
+Phrase counts for correct possible:
+受 不 了: 2
+回答 不 了: 1
+坚持 不 到: 1
+谈 不 上: 1
+Complement counts for missing possible:
+不上: 1
+不下: 1
+不出: 3
+不到: 1
+不起: 2
+得了: 2
+得出: 1
+得到: 2
+Complement counts for correct possible:
+不上: 1
+不了: 3
+不到: 1
+不起: 1
+Phrase counts for missing possible:
+估计 不 出: 1
+出 得 了: 1
+发展 不 起: 1
+吃 不 上: 1
+想 得 出: 1
+想 得 到: 1
+想象 得 到: 1
+承受 得 了: 1
+看 不 到: 1
+笑 不 出: 1
+记 不 起: 1
+进行 不 下: 1
+预估 不 出: 1
+Phrase counts for correct possible:
+买 不 起: 1
+受 不 了: 2
+回答 不 了: 1
+坚持 不 到: 1
+谈 不 上: 1
+Complement counts for missing possible:
+不上: 1
+不下: 1
+不出: 3
+不到: 1
+不起: 2
+得了: 2
+得出: 1
+得到: 2
+Complement counts for correct possible:
+不上: 1
+不了: 3
+不到: 1
+不起: 1
+得起: 1
+Phrase counts for missing possible:
+估计 不 出: 1
+出 得 了: 1
+发展 不 起: 1
+吃 不 上: 1
+想 得 出: 1
+想 得 到: 1
+想象 得 到: 1
+承受 得 了: 1
+看 不 到: 1
+笑 不 出: 1
+记 不 起: 1
+进行 不 下: 1
+预估 不 出: 1
+Phrase counts for correct possible:
+买 不 起: 1
+买 得 起: 1
+受 不 了: 2
+回答 不 了: 1
+坚持 不 到: 1
+谈 不 上: 1
+Complement counts for missing possible:
+不上: 1
+不下: 1
+不出: 3
+不到: 1
+不起: 2
+得了: 2
+得出: 1
+得到: 2
+Complement counts for correct possible:
+不上: 1
+不了: 4
+不到: 1
+不起: 1
+得起: 1
+Phrase counts for missing possible:
+估计 不 出: 1
+出 得 了: 1
+发展 不 起: 1
+吃 不 上: 1
+想 得 出: 1
+想 得 到: 1
+想象 得 到: 1
+承受 得 了: 1
+看 不 到: 1
+笑 不 出: 1
+记 不 起: 1
+进行 不 下: 1
+预估 不 出: 1
+Phrase counts for correct possible:
+买 不 起: 1
+买 得 起: 1
+受 不 了: 2
+回答 不 了: 1
+坚持 不 到: 1
+成 不 了: 1
+谈 不 上: 1
+Complement counts for missing possible:
+不上: 1
+不下: 1
+不出: 3
+不到: 1
+不起: 2
+得了: 2
+得出: 1
+得到: 2
+Complement counts for correct possible:
+不上: 1
+不了: 5
+不到: 1
+不起: 1
+得起: 1
+Phrase counts for missing possible:
+估计 不 出: 1
+出 得 了: 1
+发展 不 起: 1
+吃 不 上: 1
+想 得 出: 1
+想 得 到: 1
+想象 得 到: 1
+承受 得 了: 1
+看 不 到: 1
+笑 不 出: 1
+记 不 起: 1
+进行 不 下: 1
+预估 不 出: 1
+Phrase counts for correct possible:
+买 不 起: 1
+买 得 起: 1
+受 不 了: 2
+回答 不 了: 1
+坚持 不 到: 1
+存 不 了: 1
+成 不 了: 1
+谈 不 上: 1
+Complement counts for missing possible:
+不上: 1
+不下: 1
+不出: 3
+不到: 1
+不起: 2
+得了: 2
+得出: 1
+得到: 2
+Complement counts for correct possible:
+不上: 1
+不了: 6
+不到: 1
+不起: 1
+得起: 1
+Phrase counts for missing possible:
+估计 不 出: 1
+出 得 了: 1
+发展 不 起: 1
+吃 不 上: 1
+想 得 出: 1
+想 得 到: 1
+想象 得 到: 1
+承受 得 了: 1
+看 不 到: 1
+笑 不 出: 1
+记 不 起: 1
+进行 不 下: 1
+预估 不 出: 1
+Phrase counts for correct possible:
+买 不 起: 1
+买 得 起: 1
+受 不 了: 2
+回答 不 了: 1
+坚持 不 到: 1
+存 不 了: 1
+少 不 了: 1
+成 不 了: 1
+谈 不 上: 1
+Complement counts for missing possible:
+不上: 1
+不下: 1
+不出: 3
+不到: 1
+不起: 2
+得了: 2
+得出: 1
+得到: 2
+Complement counts for correct possible:
+不上: 1
+不了: 7
+不到: 1
+不起: 1
+得起: 1
+Phrase counts for missing possible:
+估计 不 出: 1
+出 得 了: 1
+发展 不 起: 1
+吃 不 上: 1
+想 得 出: 1
+想 得 到: 1
+想象 得 到: 1
+承受 得 了: 1
+看 不 到: 1
+笑 不 出: 1
+记 不 起: 1
+进行 不 下: 1
+预估 不 出: 1
+Phrase counts for correct possible:
+买 不 起: 1
+买 得 起: 1
+受 不 了: 2
+回答 不 了: 1
+坚持 不 到: 1
+存 不 了: 1
+少 不 了: 2
+成 不 了: 1
+谈 不 上: 1
+Complement counts for missing possible:
+不上: 1
+不下: 1
+不出: 3
+不到: 1
+不起: 2
+得了: 2
+得出: 1
+得到: 2
+Complement counts for correct possible:
+不上: 1
+不了: 8
+不到: 1
+不起: 1
+得起: 1
+Phrase counts for missing possible:
+估计 不 出: 1
+出 得 了: 1
+发展 不 起: 1
+吃 不 上: 1
+想 得 出: 1
+想 得 到: 1
+想象 得 到: 1
+承受 得 了: 1
+看 不 到: 1
+笑 不 出: 1
+记 不 起: 1
+进行 不 下: 1
+预估 不 出: 1
+Phrase counts for correct possible:
+买 不 起: 1
+买 得 起: 1
+受 不 了: 2
+回答 不 了: 1
+坚持 不 到: 1
+存 不 了: 1
+少 不 了: 2
+成 不 了: 1
+解决 不 了: 1
+谈 不 上: 1
+Complement counts for missing possible:
+不上: 1
+不下: 1
+不出: 3
+不到: 1
+不起: 2
+得了: 2
+得出: 1
+得到: 2
+Complement counts for correct possible:
+不上: 1
+不了: 9
+不到: 1
+不起: 1
+得起: 1
+Phrase counts for missing possible:
+估计 不 出: 1
+出 得 了: 1
+发展 不 起: 1
+吃 不 上: 1
+想 得 出: 1
+想 得 到: 1
+想象 得 到: 1
+承受 得 了: 1
+看 不 到: 1
+笑 不 出: 1
+记 不 起: 1
+进行 不 下: 1
+预估 不 出: 1
+Phrase counts for correct possible:
+买 不 起: 1
+买 得 起: 1
+受 不 了: 2
+回答 不 了: 1
+坚持 不 到: 1
+存 不 了: 1
+少 不 了: 2
+成 不 了: 1
+解决 不 了: 1
+谈 不 上: 1
+顾 不 了: 1
+Complement counts for missing possible:
+不上: 1
+不下: 1
+不出: 3
+不到: 1
+不起: 2
+得了: 2
+得出: 1
+得到: 2
+Complement counts for correct possible:
+不上: 2
+不了: 9
+不到: 1
+不起: 1
+得起: 1
+Phrase counts for missing possible:
+估计 不 出: 1
+出 得 了: 1
+发展 不 起: 1
+吃 不 上: 1
+想 得 出: 1
+想 得 到: 1
+想象 得 到: 1
+承受 得 了: 1
+看 不 到: 1
+笑 不 出: 1
+记 不 起: 1
+进行 不 下: 1
+预估 不 出: 1
+Phrase counts for correct possible:
+买 不 起: 1
+买 得 起: 1
+受 不 了: 2
+回答 不 了: 1
+坚持 不 到: 1
+存 不 了: 1
+少 不 了: 2
+成 不 了: 1
+指望 不 上: 1
+解决 不 了: 1
+谈 不 上: 1
+顾 不 了: 1
+Reading zh amr:
+1000...2000...3000...4000...5000...6000...7000...8000...9000...10000...
+
+Total number of AMRs with 'possible': 265
+Reading zh amr:
+1000...
+
+Total number of sentences in comparison set that should match with all_amr_set: 43
+Reading zh amr:
+1000...
+
+Total number of sentences in comparison set that should match with all_amr_set: 43
+Possibles identified in the basic model but not the sibling model:2
+Possibles identified in the sibling model but not the basic model:2
+Reading zh amr:
+1000...2000...3000...4000...5000...6000...7000...8000...9000...10000...
+
+Total number of AMRs with '能-01': 712
+Reading zh amr:
+1000...
+
+Total number of sentences in comparison set that should match with all_amr_set: 98
+Reading zh amr:
+1000...
+
+Total number of sentences in comparison set that should match with all_amr_set: 98
+Nengs missing from rephrased model that were actually nengs in the basic model:0
