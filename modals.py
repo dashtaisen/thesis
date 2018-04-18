@@ -21,11 +21,12 @@ AMR_DATA_DIR = os.path.join(os.pardir,'amrz','data')
 RESULTS_DIR = os.path.join(os.pardir,'results')
 #path to training AMRs
 GOLD_AMRS = os.path.join(os.curdir, 'amr_zh_all.txt.amr')
+GOLD_SMALL = os.path.join(os.curdir, 'amr_small.txt')
 print(GOLD_AMRS)
 #path to dev AMRs
-REPHRASED_GOLD = os.path.join(os.curdir, "amr_zh_all_rephrased.txt.amr")
+REPHRASED_GOLD = os.path.join(os.curdir, "amr_zh_all_rephrased02.txt.amr")
 BASIC_TEST = os.path.join(AMR_DATA_DIR,'amr_zh_all.txt.test.amr.basic_abt_feat.parsed')
-REPHRASED_TEST = os.path.join(os.curdir,'amr_zh_all_rephrased.txt.test.amr.basic_abt_feat.parsed')
+REPHRASED_TEST = os.path.join(os.curdir,'amr_zh_all_rephrased02.txt.test.amr.basic_abt_feat.parsed')
 SIBLING_TEST = os.path.join(AMR_DATA_DIR,'amr_zh_all.txt.test.amr.sibling_feat.parsed')
 SIBLING_BIGRAM_TEST = os.path.join(AMR_DATA_DIR,'amr_zh_all.txt.test.amr.sibling_bigram_feat.parsed')
 DEV_AMRS = os.path.join(AMR_DATA_DIR, 'amr_zh_all.txt.dev.amr.basic_abt_feat.1.parsed')
@@ -117,6 +118,41 @@ def rephrase_amrs(dest_file,all_amr_file=None):
                     dest.write(line)
 
         #print("Rephrased sentences: {}".format(rephrased_ids))
+
+def get_named_entities(all_amr_file=None):
+    """Get all the named entities
+    Inputs:
+        amr_file: file with all the AMRs
+    Returns:
+        list of (id, snt, amr) tuples
+    """
+    if all_amr_file is None:
+        all_amr_file = GOLD_AMRS
+    match_amrs = list() #(id,snt)
+    comments_and_amrs = read_amrz(all_amr_file) #(comment_list, amr_list)
+    comments = comments_and_amrs[0] #{'snt','id'}
+    amrs = comments_and_amrs[1]
+    for i in range(len(amrs)):
+        amr_graph = AMR.parse_AMR_line(amrs[i])
+        # amr_evaluation var2concept
+        v2c = {}
+        for n, v in zip(amr_graph.nodes, amr_graph.node_values):
+            v2c[n] = v
+        # print(v2c)
+        # I don't know why we need these indices but we do
+        triples = [t for t in amr_graph.get_triples()[1]]
+        triples.extend([t for t in amr_graph.get_triples()[2]])
+        #print(triples)
+        # named_ent(v2c, triples)
+        named_entities = [str(v2c[v1]) for (l,v1,v2) in triples if l == "name"]
+        print(named_entities)
+        #print(amr_graph.node_values[0])
+        #node_values = amr_graph.node_values
+        #if concept in node_values:
+            #match_amrs.append((comments[i]['id'],comments[i]['snt'],amrs[i]))
+            #possible_ids.append((comments[i]['id'].encode('utf8'),comments[i]['snt'].encode('utf8'),amrs[i].encode('utf8')))
+    #print("Total number of AMRs with '{}': {}".format(concept,len(match_amrs)))
+    #return sorted(match_amrs,key=lambda x: int(x[0].split(' ')[0].split('.')[1])) #sort by id number
 
 def get_amrs_with_concept(concept,all_amr_file=None):
     """Get the IDs of all AMRs with 'possible' concept
@@ -380,7 +416,8 @@ def test_concepts():
 if __name__ == "__main__":
     #sub_parsed_with_gold("possible",GOLD_AMRS,SIBLING_BIGRAM_TEST,"sibling_subbed.txt")
     #count_verb_complements()
-    test_concepts()
+    get_named_entities()
+    #test_concepts()
     #rephrase_amrs("amr_zh_all_rephrased02.txt",all_amr_file=UNSEG_SENTS)
     #write_possible_amrs(amr_list=rephrased,destfile='../results/amr_zh_10k_rephrased.txt')
 

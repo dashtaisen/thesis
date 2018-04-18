@@ -1,0 +1,418 @@
+# ::id export_amr.1 ::2017-02-10 13:29:53
+# ::snt 最近 ， 我们 通过 知情 人士 从 衡阳市 殡葬 管理处 财务 部门 复印 出 部分 原始 发票 凭证 11 份 （ 共计 有 30余 份 ） 。
+(x13 / 复印-01
+	:arg0 (x3 / 我们)
+	:time (x1 / 最近)
+	:manner (x4 / 通过-01
+		:arg1 (x6 / 人士
+			:arg0-of (x5 / 知情-01)))
+	:arg1 (x18 / 凭证
+		:quant (x19 / 11
+			:subset-of (x24_3 / 余-01
+				:op1 (x24_1_2 / 30)))
+		:mod (x17 / 发票
+			:quant (x15 / 部分)
+			:arg0-of (x16 / 原始-01)))
+	:location (x12 / 部门
+		:mod (x11 / 财务)
+		:poss (x85 / government-organization
+			:name (x9_x10 / name
+				:op1 "殡葬"
+				:op2 "管理处")
+			:location (x87 / city
+				:name (x8 / name
+					:op1 "衡阳市")))))
+
+# ::id export_amr.2 ::2017-02-10 13:30:35
+# ::snt 在 这些 原始 凭证 上 ， 我们 可以 清清楚楚 地 看到 如此 的 批示 ： “ 招待 省 高院 民三庭 法官 来 衡阳 调查 取证 餐费 ” 、 “ 到 省 高院 协调 与 明田 公司 诉讼 问题 ， 招待 上级 领导 ” 、 “ 局 领导 去 高院 ， 招待 费用 ” 、 “ 招待 省 高院 领导 ” 、 “ 省 高院 到 衡阳 协调 我 单位 与 明田 公司 合同 纠纷 一 案 ” 等等 （ 证据 复印件 附 后 ） 。
+(x8 / 可以-01
+	:arg0 (x11 / 看到-01
+		:arg0 (x7 / 我们)
+		:arg1 (x14 / 批示
+			:arg0-of (x100 / mean
+				:arg1 (x101 / and
+					:op1 (x26 / 餐费
+						:mod (x17 / 招待-01
+							:arg1 (x21 / 法官
+								:arg0-of (x22 / 来-01
+									:arg1 (x179 / city
+										:name (x23 / name
+											:op1 "衡阳")))
+								:arg0-of (x24 / 调查-01)
+								:arg0-of (x25 / 取证-01)
+								:mod (x169 / government-organization))))
+					:op2 (x40 / 招待-01
+						:arg1 (x42 / 领导
+							:mod (x41 / 上级))
+						:time (x30 / 到-01
+							:purpose (x33 / 协调-01
+								:arg1 (x38 / 问题
+									:arg0-of (x131 / mean
+										:arg1 (x37 / 诉讼-01
+											:arg1 (x36 / 公司
+												:name (x35 / name
+													:op1 "明田"))))))
+							:arg1 (x171 / government-organization
+								:name (x31_x32 / name
+									:op1 "省"
+									:op2 "高院"))))
+					:op3 (x52 / 费用
+						:mod (x51 / 招待-01
+							:arg1 (x47 / 领导
+								:mod (x46 / 局)
+								:arg0-of (x48 / 去-01
+									:arg1 (x49 / x171)))))
+					:op4 (x56 / 招待-01
+						:arg1 (x59 / 领导
+							:mod (x57_x58 / x171)))
+					:op5 (x76 / 案
+						:quant (x75 / 1)
+						:arg0-of (x149 / mean
+							:arg1 (x65 / 到-01
+								:purpose (x67 / 协调-01
+									:arg1 (x74 / 纠纷
+										:mod (x73 / 合同)
+										:arg0 (x70 / and
+											:op1 (x69 / 单位
+												:mod (x68 / 我))
+											:op2 (x71_x72 / x173))))
+								:arg0 (x63_x64 / x171)
+								:arg1 (x66 / x179))))
+					:op6 (x78 / 等等)))
+			:arg0-of (x164 / mean
+				:arg1 (x80 / 证据
+					:poss-of (x81 / 复印件
+						:arg0-of (x82 / 附-01
+							:arg2 (x83 / 后)))))
+			:arg0-of (x12 / 如此))
+		:location (x4 / 凭证
+			:mod (x2 / 这些)
+			:arg0-of (x3 / 原始-01))
+		:manner (x9 / 清清楚楚)))
+
+# ::id export_amr.3 ::2017-01-11 16:29:33
+# ::snt 这些 原始 发票 凭证 足以 证明 ， 这 是 一 起 典型 的 司法 不公 、 司法 腐败 案 ， 铁证如山 ！
+(x24 / and
+	:op2 (x21 / 铁证如山
+		:mode (x59 / expressive))
+	:op1 (x5 / 足以-01
+		:arg1 (x6 / 证明-01
+			:arg0 (x4 / 凭证
+				:mod (x3 / 发票
+					:arg0-of (x2 / 原始-01
+						:quant (x1 / 这些))))
+			:arg1 (x19 / 案
+				:mod (x41 / and
+					:op1 (x15 / 不公-01
+						:arg0 (x14 / 司法))
+					:op2 (x18 / 腐败-01
+						:arg0 (x17 / 司法)))
+				:domain (x8 / 这)
+				:quant (x10 / 1)
+				:cunit (x11 / 起)
+				:arg0-of (x12 / 典型-01)))))
+
+# ::id export_amr.4 ::2017-01-11 16:34:07
+# ::snt 2005年 6月 ， 衡阳市 政府 将 新 殡仪馆 建设 项目 对 外 招商 ， 明田 （ 湖南 ） 企业 有限 公司 （ 系 台 、 港 合资 企业 ） 应邀 多次 前往 衡阳 实地 考察 ，
+(x38 / and
+	:op1 (x13 / 招商-01
+		:arg1 (x10 / 项目
+			:topic (x9 / 建设-01
+				:arg1 (x8 / 殡仪馆
+					:arg0-of (x7 / 新-01))))
+		:direction (x12 / 外)
+		:arg0 (x140 / government-organization
+			:name (x4_x5 / name
+				:op1 "衡阳市"
+				:op2 "政府")))
+	:op2 (x32 / 前往-01
+		:purpose (x35 / 考察-01
+			:manner (x34 / 实地)
+			:arg0 (x143 / company
+				:name (x15_x19_x20_x21 / name
+					:op1 "明田"
+					:op2 "企业"
+					:op3 "有限"
+					:op4 "公司")
+				:location (x146 / province
+					:name (x17 / name
+						:op1 "湖南"))
+				:arg0-of (x147 / mean
+					:arg1 (x28 / 企业
+						:mod (x27 / 合资-01
+							:arg0 (x97 / and
+								:op1 (x148 / country-region
+									:name (x24 / name
+										:op1 "台"))
+								:op2 (x150 / country-region
+									:name (x26 / name
+										:op1 "港"))))))))
+		:cause (x30 / 应邀-01
+			:arg0 x143)
+		:frequency (x31 / 多次)
+		:arg1 (x142 / city
+			:name (x33 / name
+				:op1 "衡阳")))
+	:time (x105 / date-entity
+		:year (x111 / 2005)
+		:month (x113 / 6)))
+
+# ::id export_amr.5 ::2017-01-11 16:42:00
+# ::snt 并 于 当年 10月 31日 ， 与 衡阳市 民政局 、 殡葬 管理处 签订 《 衡阳市 新 殡仪馆 投资 承包 经营 合同 》 。
+(x25 / and
+	:op2 (x13 / 签订-01
+		:time (x45 / date-entity
+			:year (x3 / 当)
+			:month (x4 / 10)
+			:day (x5 / 31))
+		:arg0 (x38 / and
+			:op2 (x61 / and
+				:op1 (x57 / government-organization
+					:name (x9 / name
+						:op1 "民政局"))
+				:op2 (x59 / government-organization
+					:name (x11_x12 / name
+						:op1 "殡葬"
+						:op2 "管理处"))
+				:location (x58 / city
+					:name (x8 / name
+						:op1 "衡阳市")))
+			:op1 (x62 / company))
+		:arg1 (x55 / treaty
+			:name (x15_x16_x17_x18_x19_x20_x21 / name
+				:op1 "衡阳市"
+				:op2 "新"
+				:op3 "殡仪馆"
+				:op4 "投资"
+				:op5 "承包"
+				:op6 "经营"
+				:op7 "合同"))))
+
+# ::id export_amr.6 ::2017-02-10 13:31:27
+# ::snt 随后 ， 明田 公司 于 规定 的 期限 内 先后 按时 投资 3600多万 元 。
+(x1 / temporal
+	:arg2 (x12 / 投资-01
+		:manner (x11 / 按时)
+		:manner (x10 / 先后)
+		:arg2 (x46 / monetary-quantity
+			:quant (x13_5 / 多
+				:op1 (x48 / 36000000))
+			:cunit (x14 / 元))
+		:time (x9 / 内
+			:op1 (x8 / 期限
+				:arg1-of (x6 / 规定-01)))
+		:arg0 (x4 / 公司
+			:name (x3 / name
+				:op1 "明田"))))
+
+# ::id export_amr.7 ::2017-02-10 13:35:41
+# ::snt 然而 ， 由于 衡阳市 民政局 、 殡葬 管理处 不 按照 投资 承包 经营 合同 第一 章 第2 条 、 第三 章 第8 条 的 约定 ， 未 办理 好 有关 批文 和 证照 ， 尤其是 不 按 国务院 令 第225 号 《 殡葬 管理 条例 》 第八 条 的 规定 向 民政厅 、 民政部 报批 ， 使 明田 公司 没有 合法 的 经营 资格 ， 无法 正当 经营 以及 后续 开发 资金 不 能 正常 投入 。
+(x79 / contrast
+	:arg2 (x83 / causation
+		:arg1 (x93 / progression
+			:arg1 (x107 / and
+				:op1 (x10 / 按照-01
+					:arg0 (x87 / and
+						:op1 (x188 / government-organization
+							:name (x7_x8 / name
+								:op1 "殡葬"
+								:op2 "管理处"))
+						:op2 (x190 / government-organization
+							:name (x5 / name
+								:op1 "民政局")
+							:location (x191 / city
+								:name (x4 / name
+									:op1 "衡阳市"))))
+					:arg1 (x25 / 约定
+						:subset-of (x14 / 合同
+							:topic (x102 / and
+								:op1 (x11 / 投资)
+								:op2 (x12 / 承包-01)
+								:op3 (x13 / 经营)))
+						:ord (x130 / and
+							:op1 (x131 / ordinal-entity
+								:value (x17 / 2)
+								:cunit (x18 / 条)
+								:poss (x16 / 章
+									:ord (x122 / ordinal-entity
+										:value (x15 / 1))))
+							:op2 (x135 / ordinal-entity
+								:value (x22 / 8)
+								:cunit (x23 / 条)
+								:poss (x21 / 章
+									:ord (x128 / ordinal-entity
+										:value (x20 / 3))))))
+					:polarity (x9 / -))
+				:op2 (x28 / 办理-01
+					:polarity (x27 / -)
+					:manner (x29 / 好)
+					:arg1 (x32 / and
+						:op1 (x31 / 批文)
+						:op2 (x33 / 证照)
+						:mod (x30 / 有关))
+					:arg0 x87))
+			:arg2 (x55 / 报批-01
+				:arg2 (x140 / and
+					:op1 (x192 / government-organization
+						:name (x52 / name
+							:op1 "民政厅"))
+					:op2 (x194 / government-organization
+						:name (x54 / name
+							:op1 "民政部")))
+				:manner (x37 / 按-02
+					:polarity (x36 / -)
+					:arg1 (x50 / 规定-01
+						:ord (x173 / ordinal-entity
+							:value (x47 / 8)
+							:cunit (x48 / 条))
+						:subset-of (x45 / 条例
+							:ord (x182 / ordinal-entity
+								:value (x40 / 225)
+								:cunit (x41 / 号))
+							:topic (x44 / 管理-01
+								:arg1 (x43 / 殡葬))
+							:subset-of (x38_x39 / 国务院令))
+						:arg0 (x195 / government-organization
+							:name (x38 / name
+								:op1 "国务院")))
+					:arg0 x87)
+				:arg0 x87))
+		:arg2 (x150 / causation
+			:arg1 (x60_2 / 有-01
+				:arg1 (x64 / 资格
+					:mod (x63 / 经营)
+					:mod (x61 / 合法))
+				:arg0 (x59 / 公司
+					:name (x58 / name
+						:op1 "明田")))
+			:arg2 (x69 / and
+				:op1 (x66 / 无法-01
+					:arg1 (x68 / 经营
+						:arg0-of (x67 / 正当-01)))
+				:op2 (x74 / 能-01
+					:arg0 (x76 / 投入-01
+						:arg1 (x72 / 资金
+							:mod (x71 / 开发)
+							:mod (x70 / 后续))
+						:arg0-of (x75 / 正常-01))
+					:polarity (x73 / -))))))
+
+# ::id export_amr.8 ::2017-02-10 14:55:42
+# ::snt 同时 ， 衡阳市 民政局 、 殡葬 管理处 不但 违反 合同 第三 章 第10 条 的 约定 —— 违法 批准 放纵 私人 企业 火化 业务 ， 也 违反 第11 条 的 约定 —— 不 启动 殡葬 改革 ， 放任 棺葬 橫行 。
+(x1 / and
+	:op2 (x67 / progression
+		:arg1 (x9 / 违反-01
+			:arg0 (x48 / and
+				:op1 (x84 / government-organization
+					:name (x3_x4 / name
+						:op1 "衡阳市"
+						:op2 "民政局"))
+				:op2 (x86 / government-organization
+					:name (x6_x7 / name
+						:op1 "殡葬"
+						:op2 "管理处")))
+			:arg1 (x16 / 约定-01
+				:subset-of (x10 / 合同)
+				:arg0-of (x55 / mean
+					:arg1 (x56 / and
+						:op1 (x19 / 批准-01
+							:arg1 (x24 / 业务
+								:mod (x23 / 火化)
+								:poss (x22 / 企业
+									:arg0-of (x21 / 私人))))
+						:op2 (x20 / 放纵-01
+							:arg1 x24)
+						:manner (x18 / 违法)))))
+		:arg2 (x27 / 违反-01
+			:arg1 (x31 / 约定-01
+				:arg0-of (x72 / mean
+					:arg1 (x73 / and
+						:op1 (x34 / 启动-01
+							:polarity (x33 / -)
+							:arg1 (x36 / 改革-01
+								:arg1 (x35 / 殡葬)))
+						:op2 (x38 / 放任-01
+							:arg1 (x39 / 棺葬)
+							:arg2 (x40 / 橫行))))
+				:ord (x81 / ordinal-entity
+					:value (x28 / 11)
+					:cunit (x29 / 条))))))
+
+# ::id export_amr.9 ::2017-02-10 14:59:33
+# ::snt 为 此 ， 明田 公司 多次 向 政府 有关 部门 递交 报告 ， 请求 衡阳市 民政局 、 殡葬 管理处 按 合同 约定 履行 相关 责任 和 义务 ， 但 迟迟 都 不 予 解决 。
+(x1_x2 / causation
+	:arg1 (x116 / contrast
+		:arg1 (x11 / 递交-01
+			:arg0 (x5 / 公司
+				:name (x4 / name
+					:op1 "明田"))
+			:arg1 (x12 / 报告)
+			:arg2 (x10 / 部门
+				:mod (x9 / 有关-01)
+				:subset-of (x8 / 政府))
+			:frequency (x6 / 多次)
+			:purpose (x14 / 请求-01
+				:arg0 x5
+				:arg2 (x23 / 履行-01
+					:arg1 (x26 / and
+						:op1 (x25 / 责任)
+						:op2 (x27 / 义务)
+						:arg0-of (x24 / 相关-01))
+					:manner (x20 / 按-02
+						:arg1 (x22 / 约定
+							:mod (x21 / 合同)))
+					:arg0 (x133 / and
+						:op1 (x137 / government-organization
+							:name (x16 / name
+								:op1 "民政局")
+							:location (x142 / city
+								:name (x15 / name
+									:op1 "衡阳市")))
+						:op2 (x139 / government-organization
+							:name (x18_x19 / name
+								:op1 "殡葬"
+								:op2 "管理处"))))
+				:arg1 x133))
+		:arg2 (x34 / 解决-01
+			:polarity (x32 / -)
+			:manner (x30 / 迟迟))))
+
+# ::id export_amr.10 ::2017-02-10 15:02:07
+# ::snt 明田 公司 为 维护 自身 的 合法 权益 ， 被迫 于 2007年 11月 31日 向 湖南省 高级 人民 法院 提起 诉讼 ， 要求 解除 承包 经营 合同 ， 并 返还 投资 及 赔偿 各 项 经济 损失 。
+(x10 / 被迫-01
+	:arg1 (x20 / 提起-02
+		:arg1 (x21 / 诉讼-01
+			:purpose (x23 / 要求-03
+				:arg1 (x73 / and
+					:op1 (x24 / 解除-01
+						:arg1 (x27 / 合同
+							:topic (x26 / 经营-01
+								:manner (x25 / 承包))))
+					:op2 (x30 / 返还-01
+						:arg1 (x31 / 投资))
+					:op3 (x33 / 赔偿-01
+						:arg1 (x37 / 损失-01
+							:arg1 (x36 / 经济)
+							:mod (x107 / 各项))))
+				:arg0 (x2 / 公司
+					:name (x1 / name
+						:op1 "明田")))
+			:arg0 x2)
+		:cause (x4 / 维护-01
+			:arg1 (x8 / 权益
+				:arg0-of (x7 / 合法-01))
+			:poss (x5 / x2))
+		:arg0 x2
+		:time (x125 / date-entity
+			:year (x12 / 2007)
+			:month (x13 / 11)
+			:day (x14 / 31))
+		:direction (x133 / government-organization
+			:name (x17_x18_x19 / name
+				:op1 "高级"
+				:op2 "人民"
+				:op3 "法院")
+			:location (x135 / province
+				:name (x16 / name
+					:op1 "湖南省"))))
+	:arg0 x2)
